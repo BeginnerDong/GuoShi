@@ -1,0 +1,7 @@
+.manaBoxR{min-height: 790px;padding-left: 50px!important;}
+.manaBoxR .title::before{content: '';width: 80px;height: 4px;position: absolute;bottom: 0;background-color: #BB1B21;}
+.colorT{color: #1b63e7;}
+.nav .on{background-color: #BB1B21;}
+.nav .on a{color: #fff;}
+
+.manaBoxR .video,.manaBoxR video{width: 100%;}

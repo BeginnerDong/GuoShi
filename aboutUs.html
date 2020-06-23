@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>国是电子-关于我们</title>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/include.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="./css/public.css">
+		<link type="text/css" rel="stylesheet" href="./css/aboutUs.css">
+		<link type="text/css" rel="stylesheet" href="./css/common.css">
+	</head>
+	
+	<body>
+		<div id="app">
+			<!-- 头部 -->
+			<include src="header.html"></include>
+			
+			<div class="allHead">
+				<img src="images/banner0.jpg" >
+				<div class="allTit">
+					<div class="tit1 font-40 font-w py-5 mt-3">标题标题标题标题标题标题标题标题标题</div>
+					<div class="tit2 font-22">标题标题标题标题标题标题标</div>
+				</div>
+			</div>
+			
+			<div class="allBox w-1200 aboutBox">
+				<div class="allBoxL floatL aboutBoxL">
+					<div class="nav">
+						<div class="navLi" :class="aboutCurr==1?'on':''" @click="changeCurr(1)"><a>招贤纳士</a></div>
+						<div class="navLi" :class="aboutCurr==2?'on':''" @click="changeCurr(2)"><a>联系我们</a></div>
+						<div class="navLi" :class="aboutCurr==3?'on':''" @click="changeCurr(3)"><a>全球网络</a></div>
+						<div class="navLi" :class="aboutCurr==4?'on':''" @click="changeCurr(4)"><a>正品防伪</a></div>
+						<div class="navLi" :class="aboutCurr==5?'on':''" @click="changeCurr(5)"><a>行业协会</a></div>
+						<div class="navLi" :class="aboutCurr==6?'on':''" @click="changeCurr(6)"><a>公司历史</a></div>
+					</div>
+				</div>
+				
+				<div class="allBoxR floatL aboutBoxR line-h1" v-if="aboutCurr==0">
+					<h1 class="color2 font-32 pb-3 position-r title">关于罗彻斯特电子</h1>
+					<h2 class="font-26 color2 py-3">The Semiconductor Lifecycle Solution</h2>
+					
+					<div class="content pt-3">
+						<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存，覆盖20多万种产品型号，拥有海量件产品，同时覆盖众多未停产器件</p>
+						<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存</p>
+						<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。</p>
+						<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存，覆盖20多万种产品型号，拥有海量件产品，同时覆盖众多未停产器件</p>
+						<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。</p>
+						<div class="video">
+							<video src="images/video.mp4" controls="controls">您的浏览器不支持视频播放</video>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				<!-- 招贤纳士 -->
+				<div class="allBoxR floatL aboutBoxR line-h1" v-if="aboutCurr==1">
+					<h1 class="color2 font-32 pb-3 position-r title">全球化的企业文化</h1>
+					<h2 class="font-26 color2 py-3">我们坚信为企业招募到合适的人一起工作，是我们获得成功的源动力</h2>
+					<div class="content pt-3 font-18">
+						<h3 class="font-26 color2 font-w pb-4">我们的员工</h3>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">共同努力，创造卓越的成果</span>
+						</div>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">每个人都扮演着团队关键角色，各司其职并与团队其他成员共同协作</span>
+						</div>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">经验丰富，且韩业技术娴熟</span>
+						</div>
+						<h3 class="font-26 color2 font-w py-4">员工福利</h3>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">公司为全球所有员工提供行业竞争力的薪酬和福利计划，该计划视各区域实际情况而定</span>
+						</div>
+						<img src="images/img.jpg" class="w-100 mt-5">
+					</div>
+				</div>
+				
+				<!-- 联系我们 -->
+				<div class="allBoxR floatL aboutBoxR contactUs" v-if="aboutCurr==2">
+					<h1 class="font-32 color2 pb-5">联系我们</h1>
+					<div class="contact">
+						<div class="w-100">
+							<input type="text" placeholder="姓名" class="floatL"/>
+							<input type="text" placeholder="电话" class="floatR"/>
+						</div>
+						<input type="text" placeholder="邮箱" class="email"/>
+						<textarea placeholder="留言框"></textarea>
+					</div>
+					<div class="map"><img src="images/about%20us%20-img.jpg" ></div>
+					<div class="agreen font-18 color2">
+						<div class="pt-5 line-h2">罗彻斯特电子非常重视用户隐私信息的保护，您在注册/管理账户或使用我司的产品和服务时，我们可能会使用与您有关的信息。我们可能会不时的就我们的产品和服务或您可能感兴趣的其他信息与您联系。如果您同意我们为此目的与您联系，请在下列方框打勾以表明您希望我们与您联系</div>
+						<div class="pt-2">
+							<img src="images/about%20us%20-icon5.png" >
+							<p class="font-w font-20 floatL pl-1">我同意罗彻斯特电子像我发送邮件/电子期刊或与我联系</p>
+						</div>
+						
+						<div class="pt-5 line-h2">为了向您提供您所需的内容，我么需要存储和处理您的个人信息。如您同意我们存储您的个人信息作此用途，请在下列方框打勾</div>
+						<div class="pt-2">
+							<img src="images/about%20us%20-icon6.png" >
+							<p class="font-w font-20 floatL pl-1">我同意罗彻斯特电子像我发送邮件/电子期刊或与我联系</p>
+						</div>
+						
+						<div class="py-5 line-h2">罗彻斯特电子将通过您所提供的联系信息向您发送相关产品和服务的最新资讯。您可以随时取消对这些信息的订阅。有关如何退订、我们的隐私实务，以及我们如何承诺保护和尊重您的隐私，请参阅我们的隐私政策</div>
+					</div>
+					<div class="submit bgM colorf font-26 text-c rounded10 my-5">提交</div>
+				</div>
+				
+				<!-- 全球网络 -->
+				<div class="allBoxR floatL aboutBoxR" v-if="aboutCurr==3">
+					<h1 class="font-32 color2 pb-3 line-h1">全球总部</h1>
+					<div class="network">
+						<div class="netBox1 overflow-h">
+							<div class="netBox1L font-18 color2 floatL line-h1.5">
+								<div class="item">
+									<img src="images/about%20us%20-icon.png" >
+									<span>美国罗彻斯特电子有限公司</span>
+								</div>
+								<div class="item">
+									<img src="images/about%20us%20-icon1.png" >
+									<span>上海市浦东新区金科路2889弄1号长泰广场A座602室</span>
+								</div>
+								<div class="item">
+									<img src="images/about%20us%20-icon2.png" >
+									<span>710247</span>
+								</div>
+								<div class="item">
+									<img src="images/about%20us%20-icon3.png" >
+									<span>029-8909-0987</span>
+								</div>
+								<div class="item">
+									<img src="images/about%20us%20-icon4.png" >
+									<span>+86.21.6288.1474</span>
+								</div>
+							</div>
+							<img src="images/about%20us%20-img2.jpg" class="netImg floatR">
+						</div>
+						<div class="netBox2 color2 pt-4 d-flex flex-wrap j-sb">
+							<div class="dd my-4" v-for="v in 5">
+								<h2 class="font-24 pb-3 font-w">中国销售中心-上海</h2>
+								<div class="font-18 color2 line-h1.5">
+									<div class="item">
+										<img src="images/about%20us%20-icon.png" >
+										<span>美国罗彻斯特电子有限公司</span>
+									</div>
+									<div class="item">
+										<img src="images/about%20us%20-icon1.png" >
+										<span>上海市浦东新区金科路2889弄1号长泰广场A座602室</span>
+									</div>
+									<div class="item">
+										<img src="images/about%20us%20-icon2.png" >
+										<span>710247</span>
+									</div>
+									<div class="item">
+										<img src="images/about%20us%20-icon3.png" >
+										<span>029-8909-0987</span>
+									</div>
+									<div class="item">
+										<img src="images/about%20us%20-icon4.png" >
+										<span>+86.21.6288.1474</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 正品防伪 -->
+				<div class="allBoxR floatL aboutBoxR line-h1" v-if="aboutCurr==4">
+					<h1 class="color2 font-32 pb-3 position-r title">采购假冒劣质半导体元器件的危害</h1>
+					<div class="font-18 line-h2 mt-3">
+						<p class="pb-5">半导体元迄今是电子系统的核心，其质量对诸如工业、交通、军事、医疗、能源、民航、汽车和电信等高可靠性市场的影响及其深远。假冒劣质半岛日产品会给人们的身体健康。安全和安防等带来重大危害。</p>
+						<p class="pb-5">2006年，罗彻斯特电子发起了一项针对半导体稀罕也协会（SIA）一起完成了反假冒工作组（ACTF）的组件工作。至今，罗彻斯特电子仍活跃在半导体协会，积极宣传推广最优采购方案和大几销售假冒劣质元器件产品的行为。</p>
+					</div>
+					<div class="content font-18">
+						<h3 class="font-26 color2 font-w pb-4">如何避免买到假冒劣质的元器件产品？</h3>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">从授权渠道购买可保证质量，从非授权渠道采购会带来严重的质量后果</span>
+						</div>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">从提供完整的性能，质量和可靠性保证的供应商处购买</span>
+						</div>
+						<div class="pb-2">
+							<img src="images/icon.png" >
+							<span class="pl-1">确保供应商所售的最终产品符合相关质量认证</span>
+						</div>
+					</div>
+					<div class="video mt-4">
+						<video src="images/video.mp4" controls="controls">您的浏览器不支持视频播放</video>
+					</div>
+				</div>
+				
+				<!-- 行业协会 -->
+				<div class="allBoxR floatL aboutBoxR" v-if="aboutCurr==5">
+					<div class="association d-flex flex-wrap j-sb">
+						<div class="item pb-5" v-for="v in 9">
+							<img src="images/about%20us%20-img1.png">
+							<p class="pt-1 font-16 color2 px-2 text-c">标题标题标题标题标题标题标题标题标题标题标题</p>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 公司历史 -->
+				<div class="allBoxR floatL aboutBoxR line-h1" v-if="aboutCurr==6">
+					<h1 class="color2 font-32 pb-3 position-r title">公司发展历史</h1>
+					<div class="content pt-3">
+						<div class="font-18 line-h2 mt-3">
+							<p class="pb-5">公司总部位于美国马萨储塞州的纽伯里波特，在全球主要市场均设有分支机构。如今，Cu在公司担任CEO一职，与公司联合总裁Chris Gerrish和Paul Derrish携手合作，共同向更高的全球化目标迈进。</p>
+							<p class="pb-5">创办近40年以来，罗彻斯特电子与70多家元器件制造商建立了合作关系，是客户提供持续部位如今，Cu在公司担任CEO一职，与公司联合总裁Chris Gerrish和Paul Derrish携手合作，共同向更高的全球化目标迈进。</p>
+						</div>
+						<img src="images/img.jpg" class="w-100">
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			<!-- 底部 -->
+			<include src="footer.html"></include>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		"el":'#app',
+		data:function(){
+			return {
+				aboutCurr:0
+			}
+		},
+		created:function(){
+			   
+		},
+		methods:{
+			changeCurr(i){
+				const self = this;
+				self.aboutCurr = i;
+			}
+		}
+	})
+</script>

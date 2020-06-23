@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>国是电子-产品中心</title>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/include.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="./css/public.css">
+		<link type="text/css" rel="stylesheet" href="./css/product.css">
+		<link type="text/css" rel="stylesheet" href="./css/common.css">
+	</head>
+	
+	<body>
+		<div id="app">
+			<!-- 头部 -->
+			<include src="header.html"></include>
+			
+			<div class="allHead">
+				<img src="images/banner0.jpg" >
+				<div class="allTit">
+					<div class="tit1 font-40 font-w py-5 mt-3">标题标题标题标题标题标题标题标题标题</div>
+					<div class="tit2 font-22">标题标题标题标题标题标题标</div>
+				</div>
+			</div>
+			
+			<div class="allBox w-1200 proBox">
+				<div class="allBoxL floatL proBoxL">
+					<div class="nav">
+						<div class="navLi" :class="proCurr==1?'on':''" @click="changeCurr(1)"><a>机械类</a></div>
+						<div class="navLi" :class="proCurr==2?'on':''" @click="changeCurr(2)"><a>机械类</a></div>
+						<div class="navLi" :class="proCurr==3?'on':''" @click="changeCurr(3)"><a>机械类</a></div>
+						<div class="navLi" :class="proCurr==4?'on':''" @click="changeCurr(4)"><a>机械类</a></div>
+						<div class="navLi" :class="proCurr==5?'on':''" @click="changeCurr(5)"><a>机械类</a></div>
+					</div>
+				</div>
+				<div class="allBoxR floatL text-c proBoxR">
+					<div class="w-100 overflow-h proCon">
+						<a class="item" href="productDetail.html">
+							<img src="images/img.jpg" >
+							<div class="font-22 color2 py-3">产品名称产品名称</div>
+						</a>
+						<a class="item" href="productDetail.html">
+							<img src="images/img.jpg" >
+							<div class="font-22 color2 py-3">产品名称产品名称</div>
+						</a>
+						<a class="item" href="productDetail.html">
+							<img src="images/img.jpg" >
+							<div class="font-22 color2 py-3">产品名称产品名称</div>
+						</a>
+						<a class="item" href="productDetail.html">
+							<img src="images/img.jpg" >
+							<div class="font-22 color2 py-3">产品名称产品名称</div>
+						</a>
+						<a class="item" href="productDetail.html">
+							<img src="images/img.jpg" >
+							<div class="font-22 color2 py-3">产品名称产品名称</div>
+						</a>
+					</div>
+					
+					
+					
+					<!-- 分页 -->
+					<div class="all-pages overflow-h">
+						<a class="no-prev" ><img data-type="back" class="arrowIcon" src="images/icon3.png" ></a>
+						<a class="page on">1</a>
+						<a class="page">2</a>
+						<a class="page">3</a>
+						<a class="next" ><img data-type="next" class="arrowIcon" src="images/icon1.png" ></a>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- 底部 -->
+			<include src="footer.html"></include>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		"el":'#app',
+		data:function(){
+			return {
+				headCurr:0,
+				proCurr:1
+			}
+		},
+		created:function(){
+			   
+		},
+		methods:{
+			changeCurr(i){
+				const self = this;
+				self.proCurr = i;
+			}
+		}
+	})
+</script>

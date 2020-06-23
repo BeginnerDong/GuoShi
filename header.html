@@ -1,0 +1,84 @@
+<div class="header" style="border-bottom: 1px solid #e1e1e1;">
+	<div class="headT colorf text-c font-22">国是电子正密切关注新型1冠状病毒的发展情况，并积极采取预防措施。疫情期间，我们将继续满足全球客户的需求</div>
+	<div class="head">
+		<img src="images/logo.png" class="floatL logo">
+		<div class="headNav line-h1">
+			<ul class="navSmall font-20 color2 floatR my-3">
+				<li><a href="news.html">新闻中心</a></li>
+				<li><a href="aboutUs.html">联系我们</a></li>
+				<li><a href="">中文/英文</a></li>
+			</ul>
+			<ul class="navBig font-24 color2 floatR">
+				<li class="navBigLi" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)">
+					<a :href="v.url" :class="headCurr==i?'on':''" class="tt">{{v.title}}</a>
+					<ul class="nav font-20 z-index1000" >
+						<li v-for="(item,index) in v.list"><a href="">{{item}}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- mobile的按钮 -->
+		<!-- <div class="mobile-Btn" @click="shownav">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div> -->
+	</div>
+</div>
+<script type="text/javascript">
+	var Header = new Vue({
+		el:'.header',
+		data:function(){
+			return {
+				headCurr:-1,
+				labelData:[
+					{
+						'title':'产品中心',
+						'url':'product.html',
+						'list':['机械类','设计类','包装类']
+					},{
+						'title':'生产管理',
+						'url':'management.html',
+						'list':['合作伙伴','授权代理','许可生产再制造','设计','晶圆制造','封装','测试','质量体系']
+					},{
+						'title':'服务体系',
+						'url':'service.html',
+						'list':['生产服务','物流服务']
+					},{
+						'title':'关于我们',
+						'url':'aboutUs.html',
+						'list':['招贤纳士','代理商','联系我们','全球网络','正品防伪','行业协会','公司历史']
+					},
+				]
+			}
+		},
+		created:function(){
+			
+		},
+		methods:{
+			changeCurr(i){
+				const self = this;
+				self.headCurr = i;
+			}
+		}
+	})
+</script>
+<style>
+	a{display: block;}
+	.header .headT{height: 60px;background-color: #ad0f15;line-height: 60px;}
+	.header .head{height: 140px;width: 1200px;margin: 0 auto;}
+	.header .logo{padding-top: 28px;}
+	.header .headNav::before{content: "";}
+	.header .navSmall li,.navBigLi{padding-left: 90px;float: left;position: relative;}
+	.header .navBigLi{padding-bottom: 30px;}
+	.header .navBigLi:hover .tt{color: #BB1B21;}
+	.header .nav{border-top: 3px solid #AD0F15;width: 250px;text-indent: 30px;position: absolute;top: 60px;right: 0;background-color: #fff;display: none;}
+	.header .nav li{height: 60px;line-height: 60px;border-bottom: 1px solid #d5d5d5;}
+	.header .nav li:hover{background-color: #f5f5f5;}
+	.header .on{color: #BB1B21;}
+	/* .header .navBigLi:active{color: #BB1B21;} */
+	
+	.mobile-Btn{width: 32px;height: 32px;background: #e3041f;border-radius: 5px;padding: 5px;box-sizing: border-box;display: none;margin:6px 0 ;}
+	.mobile-Btn span{width: 100%;height: 1px;background: #fff;margin: 5px auto;display: block;}
+</style>

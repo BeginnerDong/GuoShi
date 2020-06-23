@@ -1,0 +1,36 @@
+.aboutBoxR{min-height: 610px;padding-left: 50px!important;}
+.aboutBoxR .title::before{content: '';width: 80px;height: 4px;position: absolute;bottom: 0;background-color: #BB1B21;}
+
+.aboutBoxR .content p{padding-bottom: 50px;font-size: 18px;color: #222;line-height: 2;}
+.aboutBoxR  .video{width: 100%;height: auto;}
+video{width: 100%;height: auto;}
+
+
+
+
+/* 联系我们 */
+	.contact input,textarea{border: 1px solid #e1e1e1;margin-bottom: 20px;display: block;font-family: '微软雅黑';padding-left: 30px;box-sizing: border-box;}
+	.contact input{width: 425px;height: 80px;line-height: 80px;font-size: 22px;color: #999;}
+	.contact .email{width: 100%;}
+	.contact textarea{width: 100%;height: 300px;padding-top: 30px;}
+	input::-webkit-input-placeholder{font-size: 22px;color: #999;}
+	textarea::-webkit-input-placeholder{font-size: 22px;color: #999;}
+	.contactUs .map{width: 100%;height: 400px;}
+	.agreen img{float: left;}
+	.contactUs .submit{width: 400px;height: 80px;line-height: 80px;}
+	
+	
+	
+	
+/* 全球网络 */
+.netImg{width: 497px;height: 220px;}
+.network .item{display: flex;align-items: flex-start;padding-top: 20px;}
+.network .item:nth-child(1){padding-top: 0;}
+.netBox1L .item span{width: 270px;padding-left: 20px;}
+/* .netBox2 .dd:nth-child(2n){padding-left: 100px;} */
+.netBox2 .item span{width: 320px;padding-left: 20px;}
+
+
+/* 行业协会 */
+.association .item{width: 270px;}
+.association .item img{width: 100%;height: 180px;}

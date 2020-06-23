@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>国是电子</title>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/include.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="./css/public.css">
+		<link type="text/css" rel="stylesheet" href="./css/common.css">
+		<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> 
+	</head>
+	
+	<body>
+		<div id="app">
+			<!-- 头部 -->
+			<include src="header.html"></include>
+			
+			<div class="allHead">
+				<img src="images/banner0.jpg" >
+				<div class="allTit">
+					<div class="tit1 font-40 font-w py-5 mt-3">标题标题标题标题标题标题标题标题标题</div>
+					<div class="tit2 font-22">标题标题标题标题标题标题标</div>
+				</div>
+			</div>
+			
+			<div class="newsList w-1200 m-a">
+				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
+					<img src="images/img.jpg">
+					<div class="pl-3 flex-1 d-flex flex-column">
+						<h2 class="font-22 color2 pb-3">助建斯里兰卡打造“未来城市”</h2>
+						<p class="font-16 color6 flex-1 overflow-h">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
+						<p class="font-14 color9">12-08</p>
+					</div>
+				</a>
+				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
+					<img src="images/img.jpg">
+					<div class="pl-3 flex-1 d-flex flex-column">
+						<h2 class="font-22 color2 pb-3">助建斯里兰卡打造“未来城市”</h2>
+						<p class="font-16 color6 flex-1 overflow-h">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
+						<p class="font-14 color9">12-08</p>
+					</div>
+				</a>
+				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
+					<img src="images/img.jpg">
+					<div class="pl-3 flex-1 d-flex flex-column">
+						<h2 class="font-22 color2 pb-3">助建斯里兰卡打造“未来城市”</h2>
+						<p class="font-16 color6 flex-1 overflow-h">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
+						<p class="font-14 color9">12-08</p>
+					</div>
+				</a>
+			</div>
+			
+			<div class="all-pages overflow-h">
+				<a class="no-prev" ><img data-type="back" @click="changePage" class="arrowIcon" src="images/icon3.png" ></a>
+				<a class="page on">1</a>
+				<a class="page">2</a>
+				<a class="page">3</a>
+				<a class="next" ><img data-type="next" @click="changePage" class="arrowIcon" src="images/icon1.png" ></a>
+			</div>
+			
+			
+			<!-- 底部 -->
+			<include src="footer.html"></include>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		"el":'#app',
+		data:function(){
+			return {
+				
+			}
+		},
+		created:function(){
+			
+		},
+		methods:{
+			
+		}
+	})
+</script>
+<style scoped="scoped">
+	.item  img{width: 300px;height: 180px;}
+	.all-pages{margin: 80px 0;}
+</style>

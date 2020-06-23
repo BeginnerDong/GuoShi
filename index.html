@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>国是电子</title>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/include.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="./css/public.css">
+		<link type="text/css" rel="stylesheet" href="./css/index.css">
+		<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> 
+	</head>
+	
+	<body>
+		<div id="app">
+			<!-- 头部 -->
+			<include src="header.html"></include>
+			
+			<!-- banner -->
+			<div class="banner position-r text-c">
+				<div class="bannerItem position-r">
+					<img src="images/banner0.jpg" >
+					<div class="position-a colorf top0 w-100 tit">
+						<div class="font-60 font-w tit1">主标题主标题主标题</div>
+						<div class="font-30 py-5 tit2">小标题小标题小标题小标题小标题</div>
+						<div class="font-40 colorf bgM position-a bottom0 tit3 w-100">授权代理 - 许可生产再制造 - 生产服务</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 底部 -->
+			<include src="footer.html"></include>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+		"el":'#app',
+		data:function(){
+			return {
+				
+			}
+		},
+		created:function(){
+			 // var mySwiper = new Swiper ('.swiper-container', {
+			 //    loop: true, // 循环模式选项
+			    
+			 //    // 如果需要前进后退按钮
+			 //    navigation: {
+			 //      nextEl: '.swiper-button-next',
+			 //      prevEl: '.swiper-button-prev',
+			 //    }
+			 //  })    
+		},
+		methods:{
+			
+		}
+	})
+</script>
