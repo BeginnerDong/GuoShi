@@ -35,25 +35,25 @@
 				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
 					<img src="images/img.jpg">
 					<div class="pl-3 flex-1 d-flex flex-column">
-						<h2 class="font-22 color2 pb-3">助建斯里兰卡打造“未来城市”</h2>
-						<p class="font-16 color6 flex-1 overflow-h">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
-						<p class="font-14 color9">12-08</p>
+						<h2 class="font-22 color2 pb-3 avoidOverflow">助建斯里兰卡打造“未来城市”</h2>
+						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
+						<p class="font-14 color9 data">12-08</p>
 					</div>
 				</a>
 				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
 					<img src="images/img.jpg">
 					<div class="pl-3 flex-1 d-flex flex-column">
-						<h2 class="font-22 color2 pb-3">助建斯里兰卡打造“未来城市”</h2>
-						<p class="font-16 color6 flex-1 overflow-h">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
-						<p class="font-14 color9">12-08</p>
+						<h2 class="font-22 color2 pb-3 avoidOverflow">助建斯里兰卡打造“未来城市”</h2>
+						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
+						<p class="font-14 color9 data">12-08</p>
 					</div>
 				</a>
 				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
 					<img src="images/img.jpg">
 					<div class="pl-3 flex-1 d-flex flex-column">
-						<h2 class="font-22 color2 pb-3">助建斯里兰卡打造“未来城市”</h2>
-						<p class="font-16 color6 flex-1 overflow-h">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
-						<p class="font-14 color9">12-08</p>
+						<h2 class="font-22 color2 pb-3 avoidOverflow">助建斯里兰卡打造“未来城市”</h2>
+						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
+						<p class="font-14 color9 data">12-08</p>
 					</div>
 				</a>
 			</div>
@@ -92,4 +92,35 @@
 <style scoped="scoped">
 	.item  img{width: 300px;height: 180px;}
 	.all-pages{margin: 80px 0;}
+	
+	@media only screen and (max-width: 1200px){
+		.newsList{width: 100%;padding: 30px 20px;}
+		.newsList h2{width: 300px;}
+		.newsList p{max-height: 65px;-webkit-line-clamp: 3;}
+		.newsList .data{padding-top: 40px;}
+	}
+	@media only screen and (max-width: 680px){
+		.newsList h2{width: 220px;font-size: 20px;}
+		.item img{width: 40%;height: auto;}
+		/* .newsList p{max-height: 40px;} */
+	}
+	@media only screen and (max-width: 500px){
+		.newsList{padding: 20px 15px;}
+		.newsList h2{width: 190px;font-size: 18px;padding-bottom: 10px;}
+		.item{padding: 20px 0;}
+		.item img{width: 150px;height: 100px;}
+		.item div{padding-left: 15px;}
+		.newsList p{max-height: 35px;font-size: 14px;width: 215px;-webkit-line-clamp: 2;}
+		.newsList .data{padding-top: 15px;}
+	}
+	@media only screen and (max-width: 375px){
+		.newsList h2{width: 180px;font-size: 16px;}
+		.newsList p{width: 190px;}
+	}
+	@media only screen and (max-width: 375px){
+		.newsList h2{width: 160px;padding-bottom: 5px;}
+		.item img{width: 120px;height: 80px;}
+		.newsList p{width: 160px;}
+		.newsList .data{padding-top: 5px;}
+	}
 </style>

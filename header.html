@@ -1,37 +1,60 @@
-<div class="header" style="border-bottom: 1px solid #e1e1e1;">
-	<div class="headT colorf text-c font-22">国是电子正密切关注新型1冠状病毒的发展情况，并积极采取预防措施。疫情期间，我们将继续满足全球客户的需求</div>
-	<div class="head">
-		<img src="images/logo.png" class="floatL logo">
-		<div class="headNav line-h1">
-			<ul class="navSmall font-20 color2 floatR my-3">
-				<li><a href="news.html">新闻中心</a></li>
-				<li><a href="aboutUs.html">联系我们</a></li>
-				<li><a href="">中文/英文</a></li>
-			</ul>
-			<ul class="navBig font-24 color2 floatR">
-				<li class="navBigLi" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)">
-					<a :href="v.url" :class="headCurr==i?'on':''" class="tt">{{v.title}}</a>
-					<ul class="nav font-20 z-index1000" >
-						<li v-for="(item,index) in v.list"><a href="">{{item}}</a></li>
-					</ul>
-				</li>
-			</ul>
+<div id="header">
+	<div class="header" style="border-bottom: 1px solid #e1e1e1;">
+		<div class="headT colorf text-c font-22">国是电子正密切关注新型1冠状病毒的发展情况，并积极采取预防措施。疫情期间，我们将继续满足全球客户的需求</div>
+		<div class="head">
+			<img src="images/logo.png" class="floatL logo">
+			<div class="headNav line-h1 overflow-h">
+				<ul class="navSmall font-20 color2 floatR my-3">
+					<li><a href="news.html">新闻中心</a></li>
+					<li><a href="aboutUs.html">联系我们</a></li>
+					<li><a href="">中文/英文</a></li>
+				</ul>
+				<ul class="navBig font-24 color2 floatR">
+					<li class="navBigLi" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)">
+						<a :href="v.url" class="tt">{{v.title}}</a>
+						<ul class="nav font-20 z-index1000" >
+							<li v-for="(item,index) in v.list"><a href="">{{item}}</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
-		
-		<!-- mobile的按钮 -->
-		<!-- <div class="mobile-Btn" @click="shownav">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div> -->
 	</div>
+	
+	
+	
+	<!-- 移动端header -->
+	<div class="mHead">
+		<!-- mobile的按钮 -->
+		<div class="mobile-Btn" @click="shownav()">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	
+	<div class="headMask"  v-show="nav_show" @click="shownav()">
+		<ul class="navM font-22 color2 floatR bg-w">
+			<li class="navMLi" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)">
+				<a :href="v.url">{{v.title}}</a>
+				<ul class="navM_two z-index1000" >
+					<li v-for="(item,index) in v.list"><a href="">{{item}}</a></li>
+				</ul>
+			</li>
+			<li class="navMLi">
+				<a href="news.html">新闻中心</a>
+			</li>
+		</ul>
+	</div>
+	
 </div>
 <script type="text/javascript">
 	var Header = new Vue({
-		el:'.header',
+		el:'#header',
 		data:function(){
 			return {
-				headCurr:-1,
+				nav_show:false,
+				currentUrl:'',
 				labelData:[
 					{
 						'title':'产品中心',
@@ -54,12 +77,22 @@
 			}
 		},
 		created:function(){
-			
+			var currentUrl = window.base.GetUrlRelativePath();
+					
+			var reg = /\/([^\/]+)\.html/i;
+			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
+				self.currentUrl = reg.exec(currentUrl)[0];
+				console.log(self.currentUrl)
+			}
 		},
 		methods:{
 			changeCurr(i){
 				const self = this;
 				self.headCurr = i;
+			},
+			shownav(){
+				const self = this;
+				self.nav_show = !self.nav_show;
 			}
 		}
 	})
@@ -77,8 +110,44 @@
 	.header .nav li{height: 60px;line-height: 60px;border-bottom: 1px solid #d5d5d5;}
 	.header .nav li:hover{background-color: #f5f5f5;}
 	.header .on{color: #BB1B21;}
-	/* .header .navBigLi:active{color: #BB1B21;} */
 	
-	.mobile-Btn{width: 32px;height: 32px;background: #e3041f;border-radius: 5px;padding: 5px;box-sizing: border-box;display: none;margin:6px 0 ;}
+	
+	
+	.mHead{height: 50px;background-color: rgba(0,0,0,.8);position: relative;display: none;}
+	.mobile-Btn{width: 32px;height: 32px;background: #BB1B21;border-radius: 5px;padding: 5px;box-sizing: border-box;margin:8px 0 ;position: absolute;top: 0;right: 8px;}
 	.mobile-Btn span{width: 100%;height: 1px;background: #fff;margin: 5px auto;display: block;}
+	
+	.headMask{width: 100%;height: 100%;position: fixed;background-color: rgba(0,0,0,.5);z-index: 99999;}
+	.navM .navMLi a{width: 200px;padding: 15px 0;text-align: center;border-bottom: 1px solid #e1e1e1;position: relative;}
+	.navM .navMLi:hover{background-color: #f5f5f5;}
+	.navM .navM_two{position: absolute;right: 200px;top: 0;display: none;}
+	.navM .navM_two li{width: 200px;text-align: center;border-bottom: 1px solid #e1e1e1;background-color: #fff;border-right: 1px solid #e1e1e1;}
+	.navM .navM_two li:hover{background-color: #f5f5f5;}
+	.headMask a{width: 100%;height: 100%;}
+	
+	/* 自适应 */
+	
+	@media only screen and (max-width: 1440px) {
+		.header .headNav{margin: 0;}
+	}
+	
+	@media only screen and (max-width: 1200px) {
+		.header .headT{font-size: 18px;}
+		.header .head{width: 1000px;}
+		.header .navSmall{font-size: 18px}
+		.header .navBigLi{font-size: 22px;}
+	}
+	
+	@media only screen and (max-width: 1000px) {
+		.header{border-bottom: none!important;}
+		.mHead{display: block;}
+		.header .headT,.header .head{display: none;}
+	}
+	
+	@media only screen and (max-width: 500px) {
+		.navM .navMLi{width: 120px;font-size: 14px;}
+		.navM .navMLi a{width: 100%;}
+		.navM .navM_two{right: 120px;}
+		.navM .navM_two li{width: 120px;padding: 0;}
+	}
 </style>

@@ -5,3 +5,36 @@
 .nav .on a{color: #fff;}
 
 .manaBoxR .video,.manaBoxR video{width: 100%;}
+
+
+	
+
+
+@media only screen and (max-width: 10240px) {
+	.manaBoxR .content p{font-size: 16px;}
+	.manaBoxR h1{font-size: 30px;}
+	.manaBoxR h2{font-size: 24px;line-height: 1.7!important;}
+	.manaBoxR .item img{width: 30px;}
+	.manaBoxR .item h1{font-size: 24px;}
+}
+
+@media only screen and (max-width: 750px) {
+	.manaBoxR{padding: 50px!important;}
+	.manaBoxR .content p{font-size: 16px;}
+	.manaBoxR h1{font-size: 30px;}
+	.manaBoxR h2{font-size: 20px;line-height: 1.7!important;}
+	.manaBoxR .item div{width: 90%;}
+	.manaBoxR .item div p{line-height: 1.5;}
+}
+
+@media only screen and (max-width: 500px) {
+	.manaBoxR{padding: 20px!important;}
+	.manaBoxR .content p{font-size: 14px;}
+	.manaBoxR h1{font-size: 24px;}
+	.manaBoxR h2{font-size: 16px;line-height: 1.7!important;padding: 20px 0;}
+	.manaBoxR .item img{width: 20px;}
+	.manaBoxR .item h1{font-size: 18px;}
+	.manaBoxR .item{padding-top: 30px;}
+	.manaBoxR .item p{padding-top: 20px;}
+	.manaBoxR .title{line-height: 1.5!important;}
+}

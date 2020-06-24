@@ -5,6 +5,10 @@
 .aboutBoxR  .video{width: 100%;height: auto;}
 video{width: 100%;height: auto;}
 
+.box4 .content div{overflow: hidden;}
+.box4 .content div img{float: left;margin-top: 7px;}
+.box4 .content div span{width: 90%;display: block;float: left;line-height: 1.5!important;}
+
 
 
 
@@ -15,7 +19,8 @@ video{width: 100%;height: auto;}
 	.contact textarea{width: 100%;height: 300px;padding-top: 30px;}
 	input::-webkit-input-placeholder{font-size: 22px;color: #999;}
 	textarea::-webkit-input-placeholder{font-size: 22px;color: #999;}
-	.contactUs .map{width: 100%;height: 400px;}
+	.contactUs .map{width: 100%;}
+	.contactUs .map img{width: 100%;}
 	.agreen img{float: left;}
 	.contactUs .submit{width: 400px;height: 80px;line-height: 80px;}
 	
@@ -33,4 +38,88 @@ video{width: 100%;height: auto;}
 
 /* 行业协会 */
 .association .item{width: 270px;}
-.association .item img{width: 100%;height: 180px;}
+.association .item img{width: 100%;}
+
+
+
+
+
+@media only screen and (max-width: 1600px){
+	.box1 .content div{overflow: hidden;}
+	.box1 .content img{float: left;margin-top: 5px;}
+	.box1 .content span{width: 90%;display: block;float: left;line-height: 1.5!important;}
+}
+
+@media only screen and (max-width: 1440px){
+	.box2 .contact div input{width: 49%;}
+	.netImg{width: 50%;}
+	.box5 .item{width: 50%;}
+	.box5{padding: 100px 30px!important;}
+}
+
+@media only screen and (max-width: 1100px){
+	.aboutBoxR{padding-right: 50px;}
+	.aboutBoxR h2{line-height: 1.5!important;}
+	.netBox2 .item span{width: 280px;font-size: 16px;}
+}
+
+@media only screen and (max-width: 960px){
+	.netBox1L{width:100%;}
+	.netBox1L .item {width: 100%;}
+	.netBox1L .item span{width: 90%;}
+	.netImg{display: none;}
+	.netBox2 .item span{width: 280px;font-size: 16px;}
+	.box5 .item{width: 50%;}
+}
+
+@media only screen and (max-width: 750px){
+	.aboutBoxR{padding-top: 50px;padding-right: 50px;}
+	.aboutBoxR .content{padding-top: 0;}
+	.aboutBoxR .content p{padding-bottom: 30px;font-size: 16px;}
+	.aboutBoxR h1{font-size: 28px;}
+	.aboutBoxR h2{font-size: 22px;}
+	.box1 .content h3{font-size: 22px;padding-bottom: 30px;}
+	.box1 .content span{font-size: 16px;}
+	.box2 .contact input,textarea{height: 60px;}
+	.contact textarea{padding: 20px;}
+	.box5{padding: 60px 20px!important;}
+}
+
+@media only screen and (max-width: 500px){
+	.aboutBoxR{padding:30px 20px;padding-left: 20px!important;}
+	.aboutBoxR .title{font-size: 22px;padding-bottom: 20px;}
+	.aboutBoxR h2{font-size: 18px;}
+	.aboutBoxR .content p{font-size: 14px;padding-bottom: 15px;line-height: 1.7!important;}
+	.box1 .content h3{font-size: 18px;padding-bottom: 20px;}
+	.box1 .content span{font-size: 14px;}
+	.box2 h1{font-size: 24px;padding-bottom: 20px;}
+	.box2 .contact input,textarea{height: 40px;font-size: 14px;padding-left: 15px;margin-bottom: 10px;}
+	.contact textarea{padding: 15px;height: 160px;}
+	input::-webkit-input-placeholder{font-size: 14px;}
+	textarea::-webkit-input-placeholder{font-size: 14px;}
+	.box2 .agreen{font-size: 14px;padding-top: 30px;}
+	.box2 .agreen img{width: 15px;}
+	.box2 .agreen p{font-size: 14px;width: 88%;}
+	.contactUs .submit{width: 100%;height: 40px;line-height: 40px;font-size: 16px;margin: 0;border-radius: 5px;}
+	.box3 h1{font-size: 24px;}
+	.netBox1L .item span{font-size: 15px;}
+	.netBox1L .item img{width: 5%;margin-top: 0.5%;}
+	.netBox2 .dd{margin: 15px 0;width: 100%;}
+	.netBox2 .dd h2{padding-bottom: 20px;}
+	.netBox2 .item{padding-top: 10px;}
+	.netBox2 .item img{width: 5%;margin-top: 0.5%;}
+	.netBox2 .item span{width: 90%;font-size: 14px;}
+	.box4 .title{line-height: 1.5!important;}
+	.box4 p{font-size: 14px;padding-bottom: 20px;}
+	.box4 .content h3{font-size: 20px;line-height: 1.5!important;padding-bottom: 30px;}
+	.box4 .content div span{font-size: 14px;}
+	.box4 .video{margin: 0;}
+	.box5 .item{width: 100%;padding-bottom: 20px;font-size: 14px;}
+	.box5 .item p{font-size: 14px;}
+	.box5{padding:40px 20px!important;}
+}
+
+@media only screen and (max-width: 320px){
+	.box1 .content h3{font-size: 16px;padding-bottom: 20px;padding-top: 20px;}
+	.box1 .content span{font-size: 12px;}
+}
