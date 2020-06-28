@@ -12,10 +12,11 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/base.js"></script>
 		<script type="text/javascript" src="js/include.js"></script>
+		<script type="text/javascript" src="js/swiper.js"></script>
 		<script type="text/javascript" src="js/swiper.min.js"></script>
 		<link type="text/css" rel="stylesheet" href="./css/index.css">
 		<link type="text/css" rel="stylesheet" href="./css/public.css">
-		<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> 
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
 	</head>
 	
 	<body>
@@ -24,15 +25,19 @@
 			<include src="header.html"></include>
 			
 			<!-- banner -->
-			<div class="banner position-r text-c">
-				<div class="bannerItem position-r">
-					<img src="images/banner0.jpg" >
+			<div class="banner position-r text-c overflow-h">
+				<div class="bannerItem position-r" v-for="(v,i) in bannerData" :key="i" v-if="bannerCurr == i">
+					<div class="bannerImg"><img :src="v.img" ></div>
 					<div class="position-a colorf top0 w-100 tit">
-						<div class="font-60 font-w tit1">主标题主标题主标题</div>
+						<div class="font-60 font-w tit1">{{v.title}}</div>
 						<div class="font-30 py-5 tit2">小标题小标题小标题小标题小标题</div>
 						<div class="font-40 colorf bgM position-a bottom0 tit3 w-100">授权代理 - 许可生产再制造 - 生产服务</div>
 					</div>
 				</div>
+				
+				<!-- 按钮 -->
+				<div class="bannerBtn per" @click="changeBannerBtn(1)"><img src="images/icon5.png" ></div>
+				<div class="bannerBtn next" @click="changeBannerBtn(-1)"><img src="images/icon4.png" ></div>
 			</div>
 			
 			<!-- 底部 -->
@@ -43,25 +48,63 @@
 </html>
 <script type="text/javascript">
 	var app = new Vue({
-		"el":'#app',
+		el:'#app',
 		data:function(){
 			return {
-				
+				bannerData:[
+					{'img':'./images/banner0.jpg',
+						'title':'标题第一个标题'
+					},
+					{'img':'images/banner1.jpg',
+						'title':'标题第二个标题'
+					}
+				],
+				bannerCurr:-1,
+				bannerTime:null
 			}
 		},
 		created:function(){
-			 // var mySwiper = new Swiper ('.swiper-container', {
-			 //    loop: true, // 循环模式选项
-			    
-			 //    // 如果需要前进后退按钮
-			 //    navigation: {
-			 //      nextEl: '.swiper-button-next',
-			 //      prevEl: '.swiper-button-prev',
-			 //    }
-			 //  })    
+			const self = this;
+			if(self.bannerData.length >= 1){
+				self.bannerTime = setInterval(function(){
+					self.changeBanner('+')
+				},4000)
+			}
 		},
 		methods:{
-			
+			changeBanner:function(type){
+				const self = this;
+				if(type == '+'){
+					self.bannerCurr = self.bannerCurr + 1;
+					if(self.bannerCurr == self.bannerData.length){
+						self.bannerCurr = 0;
+					}
+				}else{
+					self.bannerCurr = -1;
+				}
+			},
+			changeBannerBtn(x){
+				const self = this;
+				clearInterval(self.bannerTime);
+				self.bannerTime = null;
+				self.bannerCurr = self.bannerCurr + 1;
+				if(self.bannerCurr == self.bannerData.length){
+					self.bannerCurr = 0;
+				}else if(self.bannerCurr == -1){
+					self.bannerCurr = self.bannerData.length-1;
+				}
+				self.bannerTime = setInterval(function(){
+					self.changeBanner('+')
+				},4000)
+			}
+		},
+		destroyed(){
+			const self = this;
+			clearInterval(self.bannerTime);
+			self.bannerTime = null;
 		}
 	})
 </script>
+<style type="text/css">
+	.swiper-container{height: 300px;}
+</style>

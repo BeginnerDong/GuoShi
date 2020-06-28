@@ -3,16 +3,16 @@
 		<div class="headT colorf text-c font-22">国是电子正密切关注新型1冠状病毒的发展情况，并积极采取预防措施。疫情期间，我们将继续满足全球客户的需求</div>
 		<div class="head">
 			<img src="images/logo.png" class="floatL logo">
-			<div class="headNav line-h1 overflow-h">
+			<div class="headNav line-h1 d-flex flex-column h-100 a-end">
 				<ul class="navSmall font-20 color2 floatR my-3">
 					<li><a href="news.html">新闻中心</a></li>
 					<li><a href="aboutUs.html">联系我们</a></li>
 					<li><a href="">中文/英文</a></li>
 				</ul>
-				<ul class="navBig font-24 color2 floatR">
-					<li class="navBigLi" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)">
+				<ul class="navBig font-24 color2 floatR flex-1">
+					<li class="navBigLi h-100" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
 						<a :href="v.url" class="tt">{{v.title}}</a>
-						<ul class="nav font-20 z-index1000" >
+						<ul class="nav font-20 z-index1000" :class="show_smallNav == i?'active':''">
 							<li v-for="(item,index) in v.list"><a href="">{{item}}</a></li>
 						</ul>
 					</li>
@@ -35,9 +35,9 @@
 	
 	<div class="headMask"  v-show="nav_show" @click="shownav()">
 		<ul class="navM font-22 color2 floatR bg-w">
-			<li class="navMLi" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)">
+			<li class="navMLi position-r" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
 				<a :href="v.url">{{v.title}}</a>
-				<ul class="navM_two z-index1000" >
+				<ul class="navM_two z-index1000" :class="show_smallNav == i?'active':''">
 					<li v-for="(item,index) in v.list"><a href="">{{item}}</a></li>
 				</ul>
 			</li>
@@ -72,8 +72,9 @@
 						'title':'关于我们',
 						'url':'aboutUs.html',
 						'list':['招贤纳士','代理商','联系我们','全球网络','正品防伪','行业协会','公司历史']
-					},
-				]
+					}
+				],
+				show_smallNav:-1
 			}
 		},
 		created:function(){
@@ -93,6 +94,16 @@
 			shownav(){
 				const self = this;
 				self.nav_show = !self.nav_show;
+			},
+			enter(i){
+				const self = this;
+				self.show_smallNav = i;
+				console.log(self.show_smallNav)
+			},
+			leave(){
+				const self = this;
+				self.show_smallNav = -1;
+				console.log('离开了')
 			}
 		}
 	})
@@ -104,12 +115,12 @@
 	.header .logo{padding-top: 28px;}
 	.header .headNav::before{content: "";}
 	.header .navSmall li,.navBigLi{padding-left: 90px;float: left;position: relative;}
-	.header .navBigLi{padding-bottom: 30px;}
 	.header .navBigLi:hover .tt{color: #BB1B21;}
 	.header .nav{border-top: 3px solid #AD0F15;width: 250px;text-indent: 30px;position: absolute;top: 60px;right: 0;background-color: #fff;display: none;}
 	.header .nav li{height: 60px;line-height: 60px;border-bottom: 1px solid #d5d5d5;}
 	.header .nav li:hover{background-color: #f5f5f5;}
 	.header .on{color: #BB1B21;}
+	.header .active{display: block;}
 	
 	
 	
@@ -118,10 +129,11 @@
 	.mobile-Btn span{width: 100%;height: 1px;background: #fff;margin: 5px auto;display: block;}
 	
 	.headMask{width: 100%;height: 100%;position: fixed;background-color: rgba(0,0,0,.5);z-index: 99999;}
-	.navM .navMLi a{width: 200px;padding: 15px 0;text-align: center;border-bottom: 1px solid #e1e1e1;position: relative;}
+	.navM .navMLi a{width: 200px;padding: 15px 0;text-align: center;border-bottom: 1px solid #e1e1e1;}
 	.navM .navMLi:hover{background-color: #f5f5f5;}
 	.navM .navM_two{position: absolute;right: 200px;top: 0;display: none;}
-	.navM .navM_two li{width: 200px;text-align: center;border-bottom: 1px solid #e1e1e1;background-color: #fff;border-right: 1px solid #e1e1e1;}
+	.navM .navM_two li{width: 200px;text-align: center;background-color: #fff;border-right: 1px solid #e1e1e1;}
+	.navM .active{display: block;}
 	.navM .navM_two li:hover{background-color: #f5f5f5;}
 	.headMask a{width: 100%;height: 100%;}
 	
