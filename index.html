@@ -59,7 +59,7 @@
 						'title':'标题第二个标题'
 					}
 				],
-				bannerCurr:-1,
+				bannerCurr:0,
 				bannerTime:null
 			}
 		},
@@ -76,7 +76,7 @@
 				const self = this;
 				if(type == '+'){
 					self.bannerCurr = self.bannerCurr + 1;
-					if(self.bannerCurr == self.bannerData.length){
+					if(self.bannerCurr >= self.bannerData.length){
 						self.bannerCurr = 0;
 					}
 				}else{
@@ -105,6 +105,3 @@
 		}
 	})
 </script>
-<style type="text/css">
-	.swiper-container{height: 300px;}
-</style>

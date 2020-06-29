@@ -17,6 +17,7 @@
 	.serviceBoxR .content1 .contentBox:nth-child(2){float: right;margin-right: 30px;margin-left: 0;}
 	.serviceBoxR .contentBox h2{font-size: 24px;}
 	.serviceBoxR .contentBox p{font-size: 18px;}
+	.serDetailBox p{line-height: 1.5!important;}
 }
 
 @media only screen and (max-width: 960px) {
@@ -34,25 +35,25 @@
 
 @media only screen and (max-width: 550px) {
 	.serviceBoxR{padding: 40px 20px!important;min-height: 0;}
-	.serviceBoxR .title{font-size: 26px;}
-	.serviceBoxR .content{margin-top: 40px;margin-right: 0;width: 100%;padding: 30px 20px;}
-	.serviceBoxR .content h2{font-size: 18px;line-height: 1.5!important;}
+	.serviceBoxR .content{margin-top: 30px;margin-right: 0;width: 100%;padding: 20px 20px;}
+	.serviceBoxR .content h2{font-size: 16px;line-height: 1.5!important;padding: 10px 0;}
 	.serDetailBox{padding: 0!important;margin-top: 0!important;}
-	.serDetailBox p{font-size: 14px;line-height: 1.5!important;}
+	.serDetailBox p{font-size: 12px;line-height: 1.5!important;}
 	.serviceBoxR .contentBox{width: 100%;}
-	.serviceBoxR .contentBox:nth-child(2){margin-right: 0;margin-top: 20px;}
+	.serviceBoxR .contentBox:nth-child(2){margin-right: 0;padding-bottom: 20px;}
 	.serviceBoxR .contentBox h2{font-size: 20px;}
 	.serviceBoxR .contentBox p{padding-bottom: 20px;padding-top: 20px;}
 	.serviceBoxR .serItem{display: flex;flex-wrap: wrap;}
-	.serviceBoxR .serItem div{width: 50%;}
+	.serviceBoxR .serItem div{width: 50%;padding-bottom: 20px;}
 	.serviceBoxR .contentBox a{font-size: 12px;}
 	
-	.serviceBoxR .content2{margin-top: 0;padding-left: 0;padding-right: 0;}
-	.serviceBoxR .content2 h2{font-size: 20px;}
-	.serviceBoxR .content2 .item{padding-top: 30px;}
-	.serviceBoxR .content2 .item div{width: 90%;}
-	.serviceBoxR .content2 .item img{width: 20px;}
-	.serviceBoxR .content2 .item h1 a{font-size: 18px;}
+	.serviceBoxR .content2{margin-top: 0;padding: 0 0 20px 0;}
+	.serviceBoxR .content2 h2{font-size: 16px;}
+	.serviceBoxR .content2 .item{padding-top: 20px;}
+	.serviceBoxR .content2 .item div{width: 90%;padding-left: 10px;}
+	.serviceBoxR .content2 .item img{width: 15px;}
+	.serviceBoxR .content2 .item h1 a{font-size: 16px;}
+	.serviceBoxR .content2 .item div p{font-size: 12px;padding: 15px0;line-height: 1.5!important;}
 }
 
 @media only screen and (max-width: 320px){

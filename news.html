@@ -59,11 +59,9 @@
 			</div>
 			
 			<div class="all-pages overflow-h">
-				<a class="no-prev" ><img data-type="back" @click="changePage" class="arrowIcon" src="images/icon3.png" ></a>
-				<a class="page on">1</a>
-				<a class="page">2</a>
-				<a class="page">3</a>
-				<a class="next" ><img data-type="next" @click="changePage" class="arrowIcon" src="images/icon1.png" ></a>
+				<a class="no-prev" ><img data-type="back" @click="changePage('-')" class="arrowIcon" src="images/icon3.png" ></a>
+				<a class="page" v-for="(v,i) in page" :key="v" :class="pageCurr==i?'on':''" @click="changePage(i)">{{v}}</a>
+				<a class="next" ><img data-type="next" @click="changePage('+')" class="arrowIcon" src="images/icon1.png" ></a>
 			</div>
 			
 			
@@ -78,14 +76,26 @@
 		"el":'#app',
 		data:function(){
 			return {
-				
+				page:[1,2,3,4],
+				pageCurr:0
 			}
 		},
 		created:function(){
 			
 		},
 		methods:{
-			
+			changePage(type){
+				const self = this;
+				if(type == '+'){
+					self.pageCurr += 1;
+					if(self.pageCurr >= self.page.length){self.pageCurr=self.page.length-1}
+				}else if(type == '-'){
+					self.pageCurr -= 1;
+					if(self.pageCurr <=0){self.pageCurr=0};
+				}else{
+					self.pageCurr = type;
+				}
+			}
 		}
 	})
 </script>
@@ -106,7 +116,7 @@
 	}
 	@media only screen and (max-width: 500px){
 		.newsList{padding: 20px 15px;}
-		.newsList h2{width: 190px;font-size: 18px;padding-bottom: 10px;}
+		.newsList h2{width: 215px;font-size: 18px;padding-bottom: 10px;}
 		.item{padding: 20px 0;}
 		.item img{width: 150px;height: 100px;}
 		.item div{padding-left: 15px;}
@@ -117,7 +127,7 @@
 		.newsList h2{width: 180px;font-size: 16px;}
 		.newsList p{width: 190px;}
 	}
-	@media only screen and (max-width: 375px){
+	@media only screen and (max-width: 320px){
 		.newsList h2{width: 160px;padding-bottom: 5px;}
 		.item img{width: 120px;height: 80px;}
 		.newsList p{width: 160px;}

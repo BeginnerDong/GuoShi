@@ -33,7 +33,11 @@
 	.allBox{width: 100%;display: flex;}
 	.allBoxL .nav{width: 180px;}
 	.allBoxL .navLi{line-height: 60px;font-size: 20px;}
-	.allBoxR{flex: 1;}
+	.allBoxR{flex: 1;padding-right: 50px;}
+}
+
+@media only screen and (max-width: 1000px){
+	.allHead{margin-top: 50px;}
 }
 
 @media only screen and (max-width: 960px) {
@@ -45,7 +49,8 @@
 	.allBoxL{float: none;width: 100%;}
 	.allBoxL .nav{display: flex;width: 100%;margin: 0;border: none;flex-wrap: wrap;border-bottom: 1px solid #e1e1e1;text-indent: 0;}
 	.allBoxL .nav .navLi{width: 25%;font-size: 17px;text-align: center;line-height: 50px;}
-	.allBoxR{width: 100%;}
+	.allBoxL .nav .navLi:nth-child(n+5){border-bottom: none;}
+	.allBoxR{width: 100%;padding: 50px 0;}
 	.allHead{height: 230px;}
 	.allTit .tit1{font-size: 30px;margin: 0;}
 	.allTit .tit2{font-size: 22px;}
@@ -59,14 +64,24 @@
 
 @media only screen and (max-width: 500px) {
 	.allBoxL .nav .navLi{font-size: 12px;line-height: 40px;}
-	.allHead{height: 200px;}
+	.allBoxR{padding: 40px 0;border-left:none;}
+	.allHead{height: 150px;}
 	.allHead img{height: 100%;}
-	.allTit .tit1{font-size: 24px;padding: 30px 10px;}
+	.allTit .tit1{font-size: 24px;padding: 30px 10px 15px;}
 	.allTit .tit2{font-size: 16px;}
+	.arrowIcon{width: 20px;height: 20px;}
+	.all-pages{margin: 20px 0 30px!important;}
+	.all-pages .page{font-size: 16px;}
+	
+	.allBoxR .title{font-size: 22px;padding-bottom: 20px;}
+	.allBoxR .title::before{width: 50px;}
+	
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 320px) {
 	.allBoxL .nav .navLi{font-size: 12px;width: 33.3%;}
+	.allBoxL .nav .navLi:nth-child(n+5){border-bottom: 1px solid #e1e1e1;}
+	.allBoxL .nav .navLi:nth-child(n+4){border-bottom: none;}
 	.all-pages{margin: 30px 0!important;}
 	.all-pages .page{font-size: 16px;}
 	.allBoxR{padding: 40px 0;}

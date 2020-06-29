@@ -22,7 +22,7 @@
 		<div id="app">
 			<!-- 头部 -->
 			<include src="header.html"></include>
-			
+			<!-- 标题图片 -->
 			<div class="allHead">
 				<img src="images/banner0.jpg" >
 				<div class="allTit">
@@ -32,15 +32,17 @@
 			</div>
 			
 			<div class="allBox w-1200 proBox">
+			<!-- 列表 -->
 				<div class="allBoxL floatL proBoxL">
 					<div class="nav">
 						<div class="navLi" :class="proCurr==1?'on':''" @click="changeCurr(1)"><a>机械类</a></div>
-						<div class="navLi" :class="proCurr==2?'on':''" @click="changeCurr(2)"><a>机械类</a></div>
+						<div class="navLi" :class="proCurr==2?'on':''" @click="changeCurr(2)"><a>设计类</a></div>
 						<div class="navLi" :class="proCurr==3?'on':''" @click="changeCurr(3)"><a>机械类</a></div>
-						<div class="navLi" :class="proCurr==4?'on':''" @click="changeCurr(4)"><a>机械类</a></div>
+						<div class="navLi" :class="proCurr==4?'on':''" @click="changeCurr(4)"><a>设计类</a></div>
 						<div class="navLi" :class="proCurr==5?'on':''" @click="changeCurr(5)"><a>机械类</a></div>
 					</div>
 				</div>
+				<!-- 内容 -->
 				<div class="allBoxR floatL text-c proBoxR">
 					<div class="w-100 overflow-h proCon">
 						<a class="item" href="productDetail.html">
@@ -65,19 +67,14 @@
 						</a>
 					</div>
 					
-					
-					
 					<!-- 分页 -->
 					<div class="all-pages overflow-h">
-						<a class="no-prev" ><img data-type="back" class="arrowIcon" src="images/icon3.png" ></a>
-						<a class="page on">1</a>
-						<a class="page">2</a>
-						<a class="page">3</a>
-						<a class="next" ><img data-type="next" class="arrowIcon" src="images/icon1.png" ></a>
+						<a class="no-prev" ><img data-type="back" @click="changePage('-')" class="arrowIcon" src="images/icon3.png" ></a>
+						<a class="page" v-for="(v,i) in page" :key="v" :class="pageCurr==i?'on':''" @click="changePage(i)">{{v}}</a>
+						<a class="next" ><img data-type="next" @click="changePage('+')" class="arrowIcon" src="images/icon1.png" ></a>
 					</div>
 				</div>
 			</div>
-			
 			
 			<!-- 底部 -->
 			<include src="footer.html"></include>
@@ -90,8 +87,9 @@
 		"el":'#app',
 		data:function(){
 			return {
-				headCurr:0,
-				proCurr:1
+				proCurr:1,
+				page:[1,2,3,4],
+				pageCurr:0
 			}
 		},
 		created:function(){
@@ -101,6 +99,18 @@
 			changeCurr(i){
 				const self = this;
 				self.proCurr = i;
+			},
+			changePage(type){
+				const self = this;
+				if(type == '+'){
+					self.pageCurr += 1;
+					if(self.pageCurr >= self.page.length){self.pageCurr=self.page.length-1}
+				}else if(type == '-'){
+					self.pageCurr -= 1;
+					if(self.pageCurr <=0){self.pageCurr=0};
+				}else{
+					self.pageCurr = type;
+				}
 			}
 		}
 	})
