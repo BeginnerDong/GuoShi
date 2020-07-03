@@ -22,16 +22,17 @@
 	<body>
 		<div id="app">
 			<!-- 头部 -->
+			<template>
 			<include src="header.html"></include>
 			
 			<!-- banner -->
 			<div class="banner position-r text-c overflow-h">
-				<div class="bannerItem position-r" v-for="(v,i) in bannerData" :key="i" v-if="bannerCurr == i">
-					<div class="bannerImg"><img :src="v.img" ></div>
+				<div class="bannerItem position-r" v-for="(item,i) in bannerData" :key="i" v-if="bannerCurr == i">
+					<div class="bannerImg"><img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''" ></div>
 					<div class="position-a colorf top0 w-100 tit">
-						<div class="font-60 font-w tit1">{{v.title}}</div>
-						<div class="font-30 py-5 tit2">小标题小标题小标题小标题小标题</div>
-						<div class="font-40 colorf bgM position-a bottom0 tit3 w-100">授权代理 - 许可生产再制造 - 生产服务</div>
+						<div class="font-60 font-w tit1">{{item.title}}</div>
+						<div class="font-30 py-5 tit2">{{item.small}}</div>
+						<div class="font-40 colorf bgM position-a bottom0 tit3 w-100">{{item.description}}</div>
 					</div>
 				</div>
 				
@@ -42,6 +43,7 @@
 			
 			<!-- 底部 -->
 			<include src="footer.html"></include>
+			</template>
 		</div>
 		
 	</body>
@@ -52,26 +54,68 @@
 		data:function(){
 			return {
 				bannerData:[
-					{'img':'./images/banner0.jpg',
-						'title':'标题第一个标题'
-					},
-					{'img':'images/banner1.jpg',
-						'title':'标题第二个标题'
-					}
+
 				],
 				bannerCurr:0,
-				bannerTime:null
+				bannerTime:null,
+				bannerData:[]
 			}
 		},
 		created:function(){
 			const self = this;
-			if(self.bannerData.length >= 1){
-				self.bannerTime = setInterval(function(){
-					self.changeBanner('+')
-				},4000)
-			}
+			console.log(localStorage.getItem('language'))
+			self.getMainData()
 		},
+		
 		methods:{
+			
+			
+			getMainData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'英文轮播图':'轮播图'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['首页']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Article',
+						middleKey:'id',
+						key:'menu_id',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]){
+						self.bannerData = res.info.data[0].child
+						if(self.bannerData.length >= 1){
+							self.bannerTime = setInterval(function(){
+								self.changeBanner('+')
+							},4000)
+						}
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
 			changeBanner:function(type){
 				const self = this;
 				if(type == '+'){
@@ -83,6 +127,7 @@
 					self.bannerCurr = -1;
 				}
 			},
+			
 			changeBannerBtn(x){
 				const self = this;
 				clearInterval(self.bannerTime);
@@ -98,6 +143,7 @@
 				},4000)
 			}
 		},
+		
 		destroyed(){
 			const self = this;
 			clearInterval(self.bannerTime);

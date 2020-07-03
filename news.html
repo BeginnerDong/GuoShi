@@ -20,53 +20,40 @@
 	
 	<body>
 		<div id="app">
+			<template>
 			<!-- 头部 -->
 			<include src="header.html"></include>
 			
 			<div class="allHead">
-				<img src="images/banner0.jpg" >
+				<img :src="bannerData.mainImg&&bannerData.mainImg[0]?bannerData.mainImg[0].url:''" >
 				<div class="allTit">
-					<div class="tit1 font-40 font-w py-5 mt-3">标题标题标题标题标题标题标题标题标题</div>
-					<div class="tit2 font-22">标题标题标题标题标题标题标</div>
+					<div class="tit1 font-40 font-w py-5 mt-3">{{bannerData.title?bannerData.title:''}}</div>
+					<div class="tit2 font-22">{{bannerData.small_title?bannerData.small_title:''}}</div>
 				</div>
 			</div>
 			
 			<div class="newsList w-1200 m-a">
-				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
-					<img src="images/img.jpg">
+				<a :href="'newsDetail.html?id='+item.id" class="item py-5 borderB-f5 d-flex" v-for="item of mainData" :key="item.id">
+					<img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''">
 					<div class="pl-3 flex-1 d-flex flex-column">
-						<h2 class="font-22 color2 pb-3 avoidOverflow">助建斯里兰卡打造“未来城市”</h2>
-						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
-						<p class="font-14 color9 data">12-08</p>
-					</div>
-				</a>
-				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
-					<img src="images/img.jpg">
-					<div class="pl-3 flex-1 d-flex flex-column">
-						<h2 class="font-22 color2 pb-3 avoidOverflow">助建斯里兰卡打造“未来城市”</h2>
-						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
-						<p class="font-14 color9 data">12-08</p>
-					</div>
-				</a>
-				<a href="newsDetail.html" class="item py-5 borderB-f5 d-flex">
-					<img src="images/img.jpg">
-					<div class="pl-3 flex-1 d-flex flex-column">
-						<h2 class="font-22 color2 pb-3 avoidOverflow">助建斯里兰卡打造“未来城市”</h2>
-						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造.元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</p>
-						<p class="font-14 color9 data">12-08</p>
+						<h2 class="font-22 color2 pb-3 avoidOverflow">{{item.title}}</h2>
+						<p class="font-16 color6 flex-1 overflow-h txt avoidOverflow2">
+							{{item.small_title}}
+						</p>
+						<p class="font-14 color9 data">{{item.create_time}}</p>
 					</div>
 				</a>
 			</div>
+			
 			
 			<div class="all-pages overflow-h">
-				<a class="no-prev" ><img data-type="back" @click="changePage('-')" class="arrowIcon" src="images/icon3.png" ></a>
-				<a class="page" v-for="(v,i) in page" :key="v" :class="pageCurr==i?'on':''" @click="changePage(i)">{{v}}</a>
-				<a class="next" ><img data-type="next" @click="changePage('+')" class="arrowIcon" src="images/icon1.png" ></a>
+				<a class="no-prev" ><img data-type="back" @click="changePage" class="arrowIcon" src="images/icon3.png" ></a>
+				<a class="page" v-for="item in pageArray" :class="item == paginate.currentPage?'on':''" @click="linkTo(item)">{{item}}</a>
+				<a class="next" ><img data-type="next" @click="changePage" class="arrowIcon" src="images/icon1.png" ></a>
 			</div>
-			
-			
 			<!-- 底部 -->
 			<include src="footer.html"></include>
+			</template>
 		</div>
 		
 	</body>
@@ -77,25 +64,118 @@
 		data:function(){
 			return {
 				page:[1,2,3,4],
-				pageCurr:0
+				pageCurr:0,
+				bannerData:{},
+				linkPage: [],
+				pageArray: [],
+				paginate:{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
+					is_page: true,
+				},
+				allPages: 0,
+				mainData:[],
 			}
 		},
+		
 		created:function(){
-			
+			const self = this;
+			self.getBannerData();
+			self.getMainData()
 		},
+		
 		methods:{
-			changePage(type){
-				const self = this;
-				if(type == '+'){
-					self.pageCurr += 1;
-					if(self.pageCurr >= self.page.length){self.pageCurr=self.page.length-1}
-				}else if(type == '-'){
-					self.pageCurr -= 1;
-					if(self.pageCurr <=0){self.pageCurr=0};
-				}else{
-					self.pageCurr = type;
-				}
-			}
+			
+			getBannerData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'顶部主图英文':'顶部主图'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['新闻中心']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Article',
+						middleKey:'id',
+						key:'menu_id',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]){
+						self.bannerData = res.info.data[0].child[0]
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			getMainData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+				};
+				postData.paginate = window.base.cloneForm(self.paginate);
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'menu_id',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',[localStorage.getItem('language')=='EN'?'新闻列表英文':'新闻列表']]
+						},
+						condition:'in',
+					}
+				};
+				postData.order = {
+					listorder:'desc'
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]){
+						self.mainData.push.apply(self.mainData,res.info.data)
+						self.paginate['count'] = res.info.total;
+						window.base.computePageArr(self);
+			        };    
+			    };
+			    window.base.articleGet(postData, callback);
+			},
+			
+			linkTo(item) {
+				var self = this;
+				console.log(item);
+				self.linkPage = item;
+				window.base.linkTo(self);
+				console.log(self.pageArray)
+			},
+			
+			changePage(e) {
+				var self = this;
+				var dataSet = window.base.getDataSet(e);
+				window.base.changePage(dataSet, self);
+			},
+			
+			
+			
 		}
 	})
 </script>

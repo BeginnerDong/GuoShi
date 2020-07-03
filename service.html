@@ -21,133 +21,99 @@
 	<body>
 		<div id="app">
 			<!-- 头部 -->
+			<template>
 			<include src="header.html"></include>
 			
 			<div class="allHead">
-				<img src="images/banner0.jpg" >
+				<img :src="bannerData&&bannerData.mainImg&&bannerData.mainImg[0]?bannerData.mainImg[0].url:''">
 				<div class="allTit">
-					<div class="tit1 font-40 font-w py-5 mt-3">标题标题标题标题标题标题标题标题标题</div>
-					<div class="tit2 font-22">标题标题标题标题标题标题标</div>
+					<div class="tit1 font-40 font-w py-5 mt-3">{{bannerData&&bannerData.title?bannerData.title:''}}</div>
+					<div class="tit2 font-22">{{bannerData&&bannerData.small_title?bannerData.small_title:''}}</div>
 				</div>
 			</div>
 			
-			<div class="allBox w-1200 serviceBox">
+			<div class="allBox w-1200 serviceBox"  v-if="articleIndex<0">
 				<div class="allBoxL floatL serviceBoxL">
 					<div class="nav">
-						<div class="navLi" :class="serviceCurr==1?'on':''" @click="changeCurr(1)"><a>生产服务</a></div>
-						<div class="navLi" :class="serviceCurr==2?'on':''" @click="changeCurr(2)"><a>物流服务</a></div>
+						<div class="navLi" v-for="(item,index) of labelData" 
+						:class="id==item.id?'on':''" @click="changeCurr(index)"><a>{{item.title}}</a></div>
 					</div>
 				</div>
 				
 				<!-- 服务体系 -->
 				<div class="allBoxR floatL serviceBoxR line-h1">
-					<h1 class="color2 font-32 pb-3 position-r title">可提供多样化的增值服务</h1>
+					<h1 class="color2 font-32 pb-3 position-r title" v-if="serviceCurr==-1">{{bannerData&&bannerData.description?bannerData.description:''}}</h1>
 					
-					<div class="content overflow-h content1" v-if="serviceCurr==0">
-						<div class="contentBox color2 floatL">
-							<h2 class="font-28 font-w">生产服务</h2>
-							<p class="font-20 pt-3 pb-5">针对以下服务提供长期支持：</p>
+					<div class="content overflow-h content1" v-if="serviceCurr==-1">
+						<div class="contentBox color2 floatL" v-if="mainData[0]">
+							<h2 class="font-28 font-w">{{mainData&&mainData[0]?mainData[0].title:''}}</h2>
+							<p class="font-20 pt-3 pb-5">{{mainData&&mainData[0]?mainData[0].description:''}}</p>
 							<div class="serItem">
-								<div class="pb-3 d-flex a-center">
+								<div class="pb-3 d-flex a-center"  @click="viewDetail(0,index)" v-for="(item,index) in mainData[0].child" :key="item.id">
 									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">设计</a>
-								</div>
-								<div class="pb-3 d-flex a-center">
-									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">分装</a>
-								</div>
-								<div class="pb-3 d-flex a-center">
-									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">测试</a>
+									<a  class="font-18 pl-1">{{item.title}}</a>
 								</div>
 							</div>
 						</div>
-						<div class="contentBox color2 floatL">
-							<h2 class="font-28 font-w">物流服务</h2>
-							<p class="font-20 pt-3 pb-5">长期存储，持续供应：</p>
+						<div class="contentBox color2 floatL" v-if="mainData[1]">
+							<h2 class="font-28 font-w">{{mainData&&mainData[1]?mainData[1].title:''}}</h2>
+							<p class="font-20 pt-3 pb-5">{{mainData&&mainData[1]?mainData[1].description:''}}</p>
 							<div class="serItem">
-								<div class="pb-3 d-flex a-center">
+								<div class="pb-3 d-flex a-center" v-for="(item,index) in mainData[1].child" :key="item.id">
 									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">元器件现货存货</a>
-								</div>
-								<div class="pb-3 d-flex a-center">
-									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">晶圆/裸片存储</a>
-								</div>
-								<div class="pb-3 d-flex a-center">
-									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">复产IP储存</a>
-								</div>
-								<div class="pb-3 d-flex a-center">
-									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">晶圆/裸片存储</a>
-								</div>
-								<div class="pb-3 d-flex a-center">
-									<img src="images/icon.png">
-									<a href="serviceDetail.html" class="font-18 pl-1">复产IP储存</a>
+									<a @click="viewDetail(1,index)" class="font-18 pl-1">{{item.title}}</a>
 								</div>
 							</div>
 						</div>
 					</div>
 					
 					<!-- 生产服务 -->
-					<div class="content overflow-h content2" v-else-if="serviceCurr==1">
-						<h2 class="font-26 color2 py-3">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</h2>
+					<h1 class="color2 font-32 pb-3 position-r title" v-if="serviceCurr>-1">{{mainData[serviceCurr].title}}</h1>
+					<div class="content overflow-h content2" v-if="serviceCurr>-1">
+						<h2 class="font-26 color2 py-3">{{mainData[serviceCurr].description}}</h2>
 						<div class="contentBox color2 floatL pb-5">
-							<div class="overflow-h pt-5 item">
-								<img src="images/Production%20services-icon3.png" class="floatL">
+							<div class="overflow-h pt-5 item" v-for="(item,index) in mainData[serviceCurr].child" :key="item.id">
+								<img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''" class="floatL">
 								<div class="floatL pl-2">
-									<h1 class="font-28"><a href="serviceDetail.html">设计</a></h1>
-									<p class="color2 font-18 pt-3">开发解决方案，提供长期支持</p>
-								</div>
-							</div>
-							<div class="overflow-h pt-5 item">
-								<img src="images/Production%20services-icon5.png" class="floatL">
-								<div class="floatL pl-2">
-									<h1 class="font-28"><a href="serviceDetail.html">封装</a></h1>
-									<p class="color2 font-18 pt-3">开发解决方案，提供长期支持开发解决方案，提供长期支持</p>
-								</div>
-							</div>
-							<div class="overflow-h pt-5 item">
-								<img src="images/Production%20services-icon6.png" class="floatL">
-								<div class="floatL pl-2">
-									<h1 class="font-28"><a href="serviceDetail.html">测试</a></h1>
-									<p class="color2 font-18 pt-3">开发解决方案，提供长期支持</p>
+									<h1 class="font-28"@click="viewDetail(serviceCurr,index)"><a>{{item.title}}</a></h1>
+									<p class="color2 font-18 pt-3">{{item.small_title}}</p>
 								</div>
 							</div>
 						</div>
-						<img src="./images/about%20us%20-img2.jpg" class="w-100">
+						<img :src="mainData[serviceCurr]&&mainData[serviceCurr].mainImg&&mainData[serviceCurr].mainImg[0]?mainData[serviceCurr].mainImg[0].url:''" class="w-100">
 					</div>
 					
-					<!-- 物流服务 -->
-					<div class="content overflow-h  content2" v-else-if="serviceCurr==2">
-						<h2 class="font-26 color2 py-3">元器件制造商宣布停产的元器件，罗彻斯特电子获许可进行再制造</h2>
-						<div class="contentBox color2 floatL pb-5">
-							<div class="overflow-h pt-5 item">
-								<img src="images/Production%20services-icon3.png" class="floatL">
-								<div class="floatL pl-2">
-									<h1 class="font-28"><a href="serviceDetail.html">元器件现货存货</a></h1>
-									<p class="color2 font-18 pt-3">开发解决方案，提供长期支持</p>
-								</div>
-							</div>
-							<div class="overflow-h pt-5 item">
-								<img src="images/Production%20services-icon5.png" class="floatL">
-								<div class="floatL pl-2">
-									<h1 class="font-28"><a href="serviceDetail.html">晶圆/裸片存储</a></h1>
-									<p class="color2 font-18 pt-3">开发解决方案，提供长期支持开发解决方案，提供长期支持</p>
-								</div>
-							</div>
-						</div>
-						<img src="./images/about%20us%20-img2.jpg" class="w-100">
-					</div>
+					
 					
 				</div>
 				
 			</div>
 			
+			<div class="allBox w-1200 serviceBox" v-if="articleIndex>=0">
+				
+				<div class="allBoxL floatL serviceBoxL">
+					<div class="nav">
+						
+						<div class="navLi" v-for="(item,index) in mainData[navIndex].child" 
+						:class="articleIndex==index?'on':''" @click="changeArticle(index)"><a>{{item.title}}</a></div>
+					</div>
+				</div>
+				
+				<!-- 设计 -->
+				<div class="allBoxR floatL serviceBoxR line-h1">
+					<h1 class="color2 font-32 pb-3 position-r title">{{mainData&&mainData[navIndex]?mainData[navIndex].child[articleIndex].small_title:''}}</h1>
+					<div class="content pt-3">
+						<div class="content ql-editor " style="clear: both;">
+							<p class="p1 " v-html="mainData&&mainData[navIndex]?mainData[navIndex].child[articleIndex].content:''"></p>
+						</div>
+					</div>
+				</div>
+		
+			</div>
 			
-			<!-- 底部 -->
+
 			<include src="footer.html"></include>
+			</template>
 		</div>
 		
 	</body>
@@ -157,17 +123,173 @@
 		"el":'#app',
 		data:function(){
 			return {
-				serviceCurr:0
+				serviceCurr:-1,
+				bannerData:{},
+				mainData:[],
+				labelData:[],
+				id:-1,
+				navIndex:-1,
+				articleIndex:-1
 			}
 		},
+		
 		created:function(){
-			
+			const self = this;
+			self.getBannerData();
+			self.getLabelData()
 		},
+		
 		methods:{
+			
+			viewDetail(navIndex,articleIndex){
+				const self = this;
+				self.serviceCurr = -2;
+				self.navIndex = navIndex;
+				self.articleIndex = articleIndex;
+			},
+			
+			getBannerData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'顶部主图英文':'顶部主图'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['服务体系']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Article',
+						middleKey:'id',
+						key:'menu_id',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]&&res.info.data[0].child){
+						self.bannerData = res.info.data[0].child[0]
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			
+			getLabelData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['服务体系']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Label',
+						middleKey:'id',
+						key:'parentid',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					},
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]&&res.info.data[0].child){
+						self.labelData = res.info.data[0].child;
+						//self.id = self.labelData[0].id;
+						//self.getMainData()
+						self.idArray = [];
+						for (var i = 0; i < self.labelData.length; i++) {
+							self.idArray.push(self.labelData[i].id)
+						};
+						self.getArticleData()
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			getArticleData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					id:['in',self.idArray]
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Article',
+						middleKey:'id',
+						key:'menu_id',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					},
+				};
+				postData.order = {
+					listorder:'desc'
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0){
+						self.mainData = res.info.data;
+			        };    
+					if(window.base.GetRequest().index){
+						self.serviceCurr = window.base.GetRequest().index;
+						self.id = self.labelData[window.base.GetRequest().index].id;
+					}
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
 			changeCurr(i){
 				const self = this;
-				self.serviceCurr = i;
+				if(self.id!=self.labelData[i].id){
+					self.serviceCurr = i;
+					//self.mainData = [];
+					self.id = self.labelData[i].id;
+				}
+			},
+			
+			changeArticle(i){
+				const self = this;
+				if(self.articleIndex!=i){
+					self.articleIndex = i;
+				}
 			}
+			
 		}
 	})
 </script>

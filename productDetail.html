@@ -19,26 +19,29 @@
 	
 	<body>
 		<div id="app">
+			<template>
 			<!-- 头部 -->
 			<include src="header.html"></include>
 			
 			<!-- 详情内容 -->
 			<div class="content mt-5">
-				<div class="btn pevBtn"><img src="images/icon3.png" ></div>
+				<div class="btn pevBtn"  @click="change('prev')"><img src="images/icon3.png" ></div>
 				<div class="conBox">
 					<div class="conImg position-r">
-						<img src="images/img2.jpg" >
+						<img v-for="(item,index) of mainData.bannerImg" :src="item.url" v-if="index==currentIndex">
 					</div>
 					<div class="text-c conTxt font-22 color2 pt-5">
-						<p>作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存，覆盖20多万种产品型号，拥有海量件产品，同时覆盖众多未停产器件</p>
-						<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。</p>
+						<div class="content ql-editor " style="clear: both;">
+							<p class="p1 " v-html="mainData.content"></p>
+						</div>
 					</div>
 				</div>
-				<div class="btn nextBtn"><img src="images/icon1.png" ></div>
+				<div class="btn nextBtn" @click="change('next')"><img src="images/icon1.png" ></div>
 			</div>
 			
 			<!-- 底部 -->
 			<include src="footer.html"></include>
+			</template>
 		</div>
 		
 	</body>
@@ -48,14 +51,51 @@
 		"el":'#app',
 		data:function(){
 			return {
-				
+				mainData:{},
+				currentIndex:0
 			}
 		},
-		created:function(){
-			
+		
+		created () {
+		    const self = this;
+			self.getMainData();
 		},
-		methods:{
+		
+		
+		methods: {
 			
+			change(type){
+				const self = this;
+				if(type=='next'){
+					if(self.currentIndex==self.mainData.bannerImg.length-1){
+						self.currentIndex = 0
+					}else{
+						self.currentIndex++
+					}
+				}else if(type=='prev'){
+					if(self.currentIndex==0){
+						self.currentIndex = self.mainData.bannerImg.length-1
+					}else{
+						self.currentIndex--
+					}
+				}
+			},
+			
+			getMainData() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					id: window.base.GetRequest().id,
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.mainData = res.info.data[0]
+					} else {
+						alert('没有数据')
+					};	
+				};
+				window.base.articleGet(postData, callback);
+			},
 		}
 	})
 </script>

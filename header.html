@@ -2,18 +2,20 @@
 	<div class="header" style="border-bottom: 1px solid #e1e1e1;">
 		<div class="headT colorf text-c font-22">国是电子正密切关注新型冠状病毒的发展情况，并积极采取预防措施。疫情期间，我们将继续满足全球客户的需求</div>
 		<div class="head">
-			<img src="images/logo.png" class="floatL logo">
+			<a href="index.html"><img src="images/logo.png" class="floatL logo"></a>
 			<div class="headNav line-h1 d-flex flex-column h-100 a-end">
 				<ul class="navSmall font-20 color2 my-3">
 					<li><a href="news.html">新闻中心</a></li>
-					<li><a href="aboutUs.html">联系我们</a></li>
-					<li><a href="">中文/英文</a></li>
+					<li><a href="aboutUs.html?index=1">联系我们</a></li>
+					<li @click="changeLanguage"><a>
+					<span :style="language=='CN'?'color:red':''">中文</span>/
+					<span :style="language=='EN'?'color:red':''">英文</span></a></li>
 				</ul>
 				<ul class="navBig font-24 color2 flex-1">
 					<li class="navBigLi h-100" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
 						<a :href="v.url" class="tt">{{v.title}}</a>
 						<ul class="nav font-20 z-index1000" :class="show_smallNav == i?'active':''">
-							<li v-for="(item,index) in v.list"><a :href="v.url">{{item}}</a></li>
+							<li v-for="(item,index) in v.list"><a :href="v.url+'?index='+index">{{item.title}}</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -38,7 +40,7 @@
 			<li class="navMLi position-r" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
 				<a :href="v.url">{{v.title}}</a>
 				<ul class="navM_two z-index1000" :class="show_smallNav == i?'active':''">
-					<li v-for="(item,index) in v.list"><a :href="v.url">{{item}}</a></li>
+					<li v-for="(item,index) in v.list"><a :href="v.url">{{item.title}}</a></li>
 				</ul>
 			</li>
 			<li class="navMLi">
@@ -57,36 +59,224 @@
 				currentUrl:'',
 				labelData:[
 					{
-						'title':'产品中心',
-						'url':'product.html',
-						'list':['机械类','设计类','包装类']
+						title:'产品中心',
+						url:'product.html',
+						list:[]
 					},{
 						'title':'生产管理',
 						'url':'management.html',
-						'list':['合作伙伴','授权代理','许可生产再制造','设计','晶圆制造','封装','测试','质量体系']
+						'list':[]
 					},{
 						'title':'服务体系',
 						'url':'service.html',
-						'list':['生产服务','物流服务']
+						'list':[]
 					},{
 						'title':'关于我们',
 						'url':'aboutUs.html',
-						'list':['招贤纳士','代理商','联系我们','全球网络','正品防伪','行业协会','公司历史']
+						'list':[]
 					}
 				],
-				show_smallNav:-1
+				show_smallNav:-1,
+				language:''
 			}
 		},
 		created:function(){
+			const self = this;
 			var currentUrl = window.base.GetUrlRelativePath();
-					
+			if(!localStorage.getItem('language')){
+				localStorage.setItem('language', 'CN')
+			};
+			self.language = localStorage.getItem('language');
 			var reg = /\/([^\/]+)\.html/i;
 			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
 				self.currentUrl = reg.exec(currentUrl)[0];
 				console.log(self.currentUrl)
 			}
+			self.getProductLabelData();
+			self.getManagementLabelData();
+			self.getServiceLabelData();
+			self.getAboutLabelData()
 		},
+		
 		methods:{
+			
+			changeLanguage(){
+				const self = this;
+				if(self.language=='CN'){
+					self.language=='EN';
+					localStorage.setItem('language', 'EN')
+				}else{
+					self.language=='CN';
+					localStorage.setItem('language', 'CN')
+				};
+				location.reload()	
+			},
+			
+			getProductLabelData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['产品中心']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Label',
+						middleKey:'id',
+						key:'parentid',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]&&res.info.data[0].child){
+						self.labelData[0].list = res.info.data[0].child;
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			getManagementLabelData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['生产管理']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Label',
+						middleKey:'id',
+						key:'parentid',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]&&res.info.data[0].child){
+						self.labelData[1].list = res.info.data[0].child;
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			getServiceLabelData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['服务体系']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Label',
+						middleKey:'id',
+						key:'parentid',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]&&res.info.data[0].child){
+						self.labelData[2].list = res.info.data[0].child;
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			getAboutLabelData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['关于我们']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Label',
+						middleKey:'id',
+						key:'parentid',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]&&res.info.data[0].child){
+						self.labelData[3].list = res.info.data[0].child;
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
+			
 			changeCurr(i){
 				const self = this;
 				self.headCurr = i;

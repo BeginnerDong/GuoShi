@@ -21,25 +21,21 @@
 	<body>
 		<div id="app">
 			<!-- 头部 -->
+			<template>
 			<include src="header.html"></include>
 			
 			<div class="newsCon w-1200 m-a color2 mt-5">
-				<h1 class="font-24 pb-3 text-c">微信新版上手：多了四项超实用的新功能</h1>
-				<h5 class="font-14 text-c">2020.05.26</h5>
+				<h1 class="font-24 pb-3 text-c">{{mainData.title}}</h1>
+				<h5 class="font-14 text-c">{{mainData.create_time}}</h5>
 				<div class="newsTxt pt-5 font-16">
-					<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存，覆盖20多万种产品型号，拥有海量件产品，同时覆盖众多未停产器件</p>
-					<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存</p>
-					<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。</p>
-					<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。作为制造商的现货代理商，罗彻斯特电子储存超过150亿现货库存，覆盖20多万种产品型号，拥有海量件产品，同时覆盖众多未停产器件</p>
-					<p>罗彻斯特电子是可持续供应海量元器件现货的渠道，已获得70多加元器件制造商的官方授权。</p>
-				</div>
-				<div class="newsImg">
-					<img src="images/banner0.jpg" >
+					<div class="content ql-editor " style="clear: both;">
+						<p class="p1 " v-html="mainData.content"></p>
+					</div>
 				</div>
 			</div>
-			
 			<!-- 底部 -->
 			<include src="footer.html"></include>
+			</template>
 		</div>
 		
 	</body>
@@ -49,14 +45,32 @@
 		"el":'#app',
 		data:function(){
 			return {
-				
+				mainData:{}
 			}
 		},
-		created:function(){
-			
+		created () {
+		    const self = this;
+			self.getMainData();
 		},
-		methods:{
+		
+		
+		methods: {
 			
+			getMainData() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					id: window.base.GetRequest().id,
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.mainData = res.info.data[0]
+					} else {
+						alert('没有数据')
+					};	
+				};
+				window.base.articleGet(postData, callback);
+			},
 		}
 	})
 </script>

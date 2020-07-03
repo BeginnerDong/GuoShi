@@ -1,8 +1,7 @@
 window.base = {
-	g_restUrl: 'http://106.12.155.217/goldenfox/public/index.php/api/v1/',
+	g_restUrl: 'http://106.12.155.217/guoshi/public/index.php/api/v1/',
 
 	thirdapp_id:2,
-	test:666,
 	bus:new Vue(),
 	getUserToken: function(callback) {
 
