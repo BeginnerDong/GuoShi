@@ -161,7 +161,7 @@
 				
 				<!-- 行业协会 -->
 				<div class="allBoxR floatL aboutBoxR box5" v-if="aboutCurr==5">
-					<div class="association d-flex flex-wrap j-sb">
+					<div class="association d-flex flex-wrap">
 						<div class="item pb-5"  v-for="(item,index) of mainData" :key="item.id">
 							<img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''">
 							<p class="pt-1 font-16 color2 px-2 text-c">{{item.title}}</p>

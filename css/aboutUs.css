@@ -39,8 +39,9 @@ video{width: 100%;height: auto;}
 
 
 /* 行业协会 */
-.association .item{width: 270px;}
-.association .item img{width: 100%;}
+.association .item{width: 270px;margin-right: 20px;}
+.association .item:nth-child(3n){margin-right: 0;}
+.association .item img{width: 100%;box-shadow: 0 0 10px 5px #f5f5f5;/* height: 204px; */}
 
 
 
@@ -57,8 +58,12 @@ video{width: 100%;height: auto;}
 @media only screen and (max-width: 1440px){
 	.box2 .contact div input{width: 49%;}
 	.netImg{width: 50%;}
-	.box5 .item{width: 50%;}
+	.box5 .item{width: 48%;}
 	.box5{padding: 100px 30px!important;}
+	
+	.association{justify-content: space-between;}
+	.association .item{margin-right: 0;}
+	/* .association .item img{height: 244px;} */
 }
 
 @media only screen and (max-width: 1100px){
@@ -73,7 +78,7 @@ video{width: 100%;height: auto;}
 	.netBox1L .item span{width: 90%;}
 	.netImg{float: none;margin-top:20px;width: 100%;height: auto;}
 	.netBox2 .item span{width: 280px;font-size: 16px;}
-	.box5 .item{width: 50%;}
+	/* .box5 .item{width: 50%;} */
 	.agreen img{margin-top: 5px;}
 }
 
