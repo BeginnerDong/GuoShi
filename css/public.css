@@ -21,7 +21,8 @@ img{
     border:0;
 }
 body{
-    font-family: "微软雅黑";
+    /* font-family: "微软雅黑"; */
+		font-family: "Times New Roman"
 }
 /*去掉选中文本框时的边框*/
 input,button,select,textarea{outline:none;}

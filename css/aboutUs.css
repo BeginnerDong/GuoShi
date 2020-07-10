@@ -13,8 +13,8 @@ video{width: 100%;height: auto;}
 
 
 /* 联系我们 */
-	.contact input,textarea{border: 1px solid #e1e1e1;margin-bottom: 20px;display: block;font-family: '微软雅黑';padding-left: 30px;box-sizing: border-box;}
-	.contact input{width: 425px;height: 80px;line-height: 80px;font-size: 22px;color: #999;}
+	.contact input,textarea{border: 1px solid #e1e1e1;margin-bottom: 20px;display: block;font-family: '微软雅黑';padding-left: 30px;box-sizing: border-box;font-size: 22px;}
+	.contact input{width: 425px;height: 80px;line-height: 80px;font-size: 22px;}
 	.contact .email{width: 100%;}
 	.contact textarea{width: 100%;height: 300px;padding-top: 30px;}
 	input::-webkit-input-placeholder{font-size: 22px;color: #999;}
@@ -24,6 +24,7 @@ video{width: 100%;height: auto;}
 	.agreen img{float: left;}
 	.agreen p{width: 90%;}
 	.contactUs .submit{width: 400px;height: 80px;line-height: 80px;}
+	
 	
 	
 	
@@ -47,7 +48,9 @@ video{width: 100%;height: auto;}
 
 @media only screen and (max-width: 1600px){
 	.box1 .content div{overflow: hidden;}
-	.box1 .content img{float: left;margin-top: 5px;}
+	.box1 .content img{float: left;margin-top: 5px!important;}
+	.box1 .content>img{width: 100%!important;}
+	.box1 .content>div:nth-child(8) img{width: 100%!important;}
 	.box1 .content span{width: 90%;display: block;float: left;line-height: 1.5!important;}
 }
 
@@ -120,6 +123,8 @@ video{width: 100%;height: auto;}
 	.box5 .item{padding-bottom: 20px;}
 	.box5 .item p{font-size: 12px;padding: 10px;}
 	.box5{padding:40px 20px!important;}
+	
+	.aboutBoxR{min-height: 0;}
 }
 
 @media only screen and (max-width: 320px){

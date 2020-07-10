@@ -5,8 +5,8 @@
 			<a href="index.html"><img src="images/logo.png" class="floatL logo"></a>
 			<div class="headNav line-h1 d-flex flex-column h-100 a-end">
 				<ul class="navSmall font-20 color2 my-3">
-					<li><a href="news.html">新闻中心</a></li>
-					<li><a href="aboutUs.html?index=1">联系我们</a></li>
+					<li><a href="news.html">{{language=='CN'?'新闻中心':'News Center'}}</a></li>
+					<li><a href="aboutUs.html?index=1">{{language=='CN'?'联系我们':'Contact US'}}</a></li>
 					<li @click="changeLanguage"><a>
 					<span :style="language=='CN'?'color:red':''">中文</span>/
 					<span :style="language=='EN'?'color:red':''">英文</span></a></li>

@@ -19,19 +19,19 @@
 }
 
 @media only screen and (max-width: 750px) {
-	.manaBoxR{padding: 50px!important;}
-	.manaBoxR .content p{font-size: 16px;}
+	.manaBoxR{padding: 50px!important;min-height: 0;}
+	.manaBoxR .content p{font-size: 16px!important;}
 	.manaBoxR h1{font-size: 30px;}
-	.manaBoxR h2{font-size: 20px;line-height: 1.7!important;}
+	.manaBoxR h2{font-size: 20px!important;line-height: 1.7!important;}
 	.manaBoxR .item div{width: 90%;}
 	.manaBoxR .item div p{line-height: 1.5;}
 }
 
 @media only screen and (max-width: 500px) {
 	.manaBoxR{padding: 20px!important;}
-	.manaBoxR .content p{font-size: 14px;}
+	.manaBoxR .content p{font-size: 14px!important;}
 	.manaBoxR h1{font-size: 24px;}
-	.manaBoxR h2{font-size: 16px;line-height: 1.7!important;padding: 20px 0;}
+	.manaBoxR h2{font-size: 16px!important;line-height: 1.7!important;padding: 20px 0 0!important;}
 	.manaBoxR .item img{width: 20px;}
 	.manaBoxR .item h1{font-size: 18px;}
 	.manaBoxR .item{padding-top: 30px;}
