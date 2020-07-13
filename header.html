@@ -11,7 +11,7 @@
 					<span :style="language=='CN'?'color:red':''">中文</span>/
 					<span :style="language=='EN'?'color:red':''">英文</span></a></li>
 				</ul>
-				<ul class="navBig font-24 color2 flex-1">
+				<ul class="navBig color2 flex-1" :class="language=='EN'?'font-20':'font-24'">
 					<li class="navBigLi h-100" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
 						<a :href="v.url" class="tt">{{language=='CN'?v.title:v.ENTitle}}</a>
 						<ul class="nav font-20 z-index1000" :class="show_smallNav == i?'active':''">
@@ -340,7 +340,8 @@
 		.header .headT{font-size: 18px;}
 		.header .head{width: 1000px;}
 		.header .navSmall{font-size: 18px}
-		.header .navBigLi{font-size: 22px;}
+		.header .navBigLi{font-size: 18px;}
+		.header .navSmall li, .navBigLi{padding-left: 55px;}
 	}
 	
 	@media only screen and (max-width: 1000px) {
