@@ -13,7 +13,7 @@
 				</ul>
 				<ul class="navBig font-24 color2 flex-1">
 					<li class="navBigLi h-100" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
-						<a :href="v.url" class="tt">{{v.title}}</a>
+						<a :href="v.url" class="tt">{{language=='CN'?v.title:v.ENTitle}}</a>
 						<ul class="nav font-20 z-index1000" :class="show_smallNav == i?'active':''">
 							<li v-for="(item,index) in v.list"><a :href="v.url+'?index='+index">{{item.title}}</a></li>
 						</ul>
@@ -38,7 +38,7 @@
 	<div class="headMask"  v-show="nav_show" @click="shownav()">
 		<ul class="navM font-22 color2 floatR bg-w">
 			<li class="navMLi position-r" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
-				<a :href="v.url">{{v.title}}</a>
+				<a :href="v.url">{{language=='CN'?v.title:v.ENTitle}}</a>
 				<ul class="navM_two z-index1000" :class="show_smallNav == i?'active':''">
 					<li v-for="(item,index) in v.list"><a :href="v.url">{{item.title}}</a></li>
 				</ul>
@@ -60,20 +60,24 @@
 				labelData:[
 					{
 						title:'产品中心',
+						ENTitle:'Product Center',
 						url:'product.html',
 						list:[]
 					},{
-						'title':'生产管理',
-						'url':'management.html',
-						'list':[]
+						title:'生产管理',
+						ENTitle:'Production Management',
+						url:'management.html',
+						list:[]
 					},{
-						'title':'服务体系',
-						'url':'service.html',
-						'list':[]
+						title:'服务体系',
+						ENTitle:'Service System',
+						url:'service.html',
+						list:[]
 					},{
-						'title':'关于我们',
-						'url':'aboutUs.html',
-						'list':[]
+						title:'关于我们',
+						ENTitle:'About Us',
+						url:'aboutUs.html',
+						list:[]
 					}
 				],
 				show_smallNav:-1,
@@ -109,7 +113,7 @@
 					self.language=='CN';
 					localStorage.setItem('language', 'CN')
 				};
-				location.reload()	
+				window.location.href = 'index.html';
 			},
 			
 			getProductLabelData(){
