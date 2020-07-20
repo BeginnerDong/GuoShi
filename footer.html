@@ -3,7 +3,7 @@
 		<img :src="topData.mainImg&&topData.mainImg[0]?topData.mainImg[0].url:''" class="logo">
 		
 		<div class="footNav floatR">
-			<div class="nav" v-for="(v,i) in labelData" :key="i">
+			<div class="nav" v-for="(v,i) in labelData" :key="i" :class="language=='EN'?'EN_Nav':''">
 				<div class="navHead"><a :href="v.url">{{language=='CN'?v.title:v.ENTitle}}</a></div>
 				<div class="navList">
 					<div class="navLi" v-for="(item,index) in v.list" v-if="index<8"><a  :href="v.url+'?index='+index">{{item.title}}</a></div>
@@ -277,6 +277,8 @@
 	.footBox{padding: 80px 0;box-sizing: border-box;width: 1200px;overflow: hidden;margin: 0 auto;}
 	.footNav a{color: #fff;}
 	.footNav .nav{float: left;margin-left: 120px;}
+	.footNav .EN_Nav{margin-left: 70px;}
+	.footNav .nav:nth-child(1){margin-left: 0;}
 	.footer .navHead{font-size: 22px;font-weight: bold;padding-bottom: 30px;}
 	.footer .navLi a{font-size: 18px;color: #b8b8b8;padding-bottom: 30px;}
 	
@@ -284,6 +286,8 @@
 	
 	@media only screen and (max-width: 1440px) {
 		.footNav .nav{margin-left: 100px;}
+		.footNav .EN_Nav{margin-left: 40px;}
+		.EN_Nav .navHead{font-size: 18px;}
 		.footNav .nav:nth-child(1){margin-left: 0;}
 	}
 	
@@ -297,12 +301,14 @@
 		.footNav{float: none;margin-top: 50px;}
 		.footNav .nav{margin-left: 100px;}
 		.footNav .nav:nth-child(1){margin-left: 100px;}
+		.footNav .EN_Nav{margin-left: 80px;}
 	}
 	
 	@media only screen and (max-width: 960px) {
 		.footBox .logo{margin-left: 80px;}
 		.footNav .nav{margin-left: 80px;}
 		.footNav .nav:nth-child(1){margin-left: 80px;}
+		.footNav .EN_Nav{margin-left: 30px;}
 	}
 	
 	@media only screen and (max-width: 760px) {
@@ -312,6 +318,9 @@
 		.footNav .nav:nth-child(1){margin-left: 0;}
 		.footer .navHead{font-size: 20px;}
 		.footer .navLi a{padding-bottom: 20px;font-size: 16px;}
+		
+		.footNav .EN_Nav{width: 25%;}
+		.footNav .EN_Nav .navHead{font-size: 16px;}
 	}
 	
 	@media only screen and (max-width: 500px) {
