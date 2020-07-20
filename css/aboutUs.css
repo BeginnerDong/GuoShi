@@ -31,7 +31,7 @@ video{width: 100%;height: auto;}
 	
 	
 /* 全球网络 */
-.netImg{width: 497px;height: 220px;}
+.netImg{width: 425px;height: 220px;}
 .network .item{display: flex;align-items: flex-start;padding-top: 20px;}
 .network .item:nth-child(1){padding-top: 0;}
 .netBox1L .item span{width: 270px;padding-left: 20px;}
