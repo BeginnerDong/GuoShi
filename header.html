@@ -1,8 +1,8 @@
 <div id="header">
 	<div class="header" style="border-bottom: 1px solid #e1e1e1;">
-		<div class="headT colorf text-c font-22">国是电子正密切关注新型冠状病毒的发展情况，并积极采取预防措施。疫情期间，我们将继续满足全球客户的需求</div>
+		<div class="headT colorf text-c font-22">{{topData.description?topData.description:''}}</div>
 		<div class="head">
-			<a href="index.html"><img src="images/logo.png" class="floatL logo"></a>
+			<a href="index.html"><img :src="topData.mainImg&&topData.mainImg[0]?topData.mainImg[0].url:''" class="floatL logo"></a>
 			<div class="headNav line-h1 d-flex flex-column h-100 a-end">
 				<ul class="navSmall font-20 color2 my-3">
 					<li><a href="news.html">{{language=='CN'?'新闻中心':'News Center'}}</a></li>
@@ -81,7 +81,8 @@
 					}
 				],
 				show_smallNav:-1,
-				language:''
+				language:'',
+				topData:{}
 			}
 		},
 		created:function(){
@@ -96,13 +97,56 @@
 				self.currentUrl = reg.exec(currentUrl)[0];
 				console.log(self.currentUrl)
 			}
+			self.getTopData();
 			self.getProductLabelData();
 			self.getManagementLabelData();
 			self.getServiceLabelData();
 			self.getAboutLabelData()
+			
 		},
 		
 		methods:{
+			
+			getTopData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'英文':'中文'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['顶部文字']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Article',
+						middleKey:'id',
+						key:'menu_id',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]){
+						self.topData = res.info.data[0].child[0]
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
 			
 			changeLanguage(){
 				const self = this;

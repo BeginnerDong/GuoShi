@@ -1,12 +1,12 @@
 <div class="footer">
 	<div class="footBox">
-		<img src="images/logo.png" class="logo">
+		<img :src="topData.mainImg&&topData.mainImg[0]?topData.mainImg[0].url:''" class="logo">
 		
 		<div class="footNav floatR">
 			<div class="nav" v-for="(v,i) in labelData" :key="i">
-				<div class="navHead"><a :href="v.url">{{v.title}}</a></div>
+				<div class="navHead"><a :href="v.url">{{language=='CN'?v.title:v.ENTitle}}</a></div>
 				<div class="navList">
-					<div class="navLi" v-for="(item,index) in v.list"><a  :href="v.url+'?index='+index">{{item.title}}</a></div>
+					<div class="navLi" v-for="(item,index) in v.list" v-if="index<8"><a  :href="v.url+'?index='+index">{{item.title}}</a></div>
 				</div>
 			</div>
 		</div>
@@ -20,31 +20,88 @@
 				labelData:[
 					{
 						title:'产品中心',
+						ENTitle:'Product Center',
 						url:'product.html',
 						list:[]
 					},{
-						'title':'生产管理',
-						'url':'management.html',
-						'list':[]
+						title:'生产管理',
+						ENTitle:'Production Management',
+						url:'management.html',
+						list:[]
 					},{
-						'title':'服务体系',
-						'url':'service.html',
-						'list':[]
+						title:'服务体系',
+						ENTitle:'Service System',
+						url:'service.html',
+						list:[]
 					},{
-						'title':'关于我们',
-						'url':'aboutUs.html',
-						'list':[]
+						title:'关于我们',
+						ENTitle:'About Us',
+						url:'aboutUs.html',
+						list:[]
 					}
 				],
+				language:'',
+				topData:{}
 			}
 		},
+		
 		created:function(){
+			const self = this;
+			if(!localStorage.getItem('language')){
+				localStorage.setItem('language', 'CN')
+			};
+			self.language = localStorage.getItem('language');
+			console.log('self.language',self.language);
+			self.getTopData();
 			this.getProductLabelData();
 			this.getManagementLabelData();
 			this.getServiceLabelData();
 			this.getAboutLabelData()
 		},
+		
 		methods:{
+			
+			getTopData(){
+			    var self = this;
+			    var postData = {};
+			    postData.searchItem = {
+					thirdapp_id:2,
+					title:localStorage.getItem('language')=='EN'?'英文':'中文'
+				};
+				postData.getBefore = {
+					child:{
+						tableName:'Label',
+						middleKey:'parentid',
+						key:'id',
+						searchItem:{
+							status:['in',[1]],
+							title:['in',['顶部文字']]
+						},
+						condition:'in',
+					}
+				};
+				postData.getAfter = {
+					child:{
+						tableName:'Article',
+						middleKey:'id',
+						key:'menu_id',
+						searchItem:{
+							status:['in',[1]],
+						},
+						condition:'in',
+						order:{
+							listorder:'desc'
+						}
+					}
+				};
+			    var callback = function(res){
+			        if(res.info.data.length>0&&res.info.data[0]){
+						self.topData = res.info.data[0].child[0]
+			        };    
+			    };
+			    window.base.labelGet(postData, callback);
+			},
+			
 			getProductLabelData(){
 			    var self = this;
 			    var postData = {};
@@ -52,6 +109,7 @@
 					thirdapp_id:2,
 					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
 				};
+				
 				postData.getBefore = {
 					child:{
 						tableName:'Label',
@@ -89,6 +147,7 @@
 			getManagementLabelData(){
 			    var self = this;
 			    var postData = {};
+				
 			    postData.searchItem = {
 					thirdapp_id:2,
 					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
@@ -130,6 +189,7 @@
 			getServiceLabelData(){
 			    var self = this;
 			    var postData = {};
+				
 			    postData.searchItem = {
 					thirdapp_id:2,
 					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'
@@ -171,6 +231,7 @@
 			getAboutLabelData(){
 			    var self = this;
 			    var postData = {};
+				
 			    postData.searchItem = {
 					thirdapp_id:2,
 					title:localStorage.getItem('language')=='EN'?'左侧菜单英文':'左侧菜单'

@@ -44,7 +44,7 @@
 				<!-- 内容 -->
 				<div class="allBoxR floatL text-c proBoxR">
 					<div class="w-100 overflow-h proCon">
-						<a v-for="item of mainData" class="item" :href="'productDetail.html?id='+item.id">
+						<a v-for="item of mainData" class="item" target="_blank" :href="'productDetail.html?id='+item.id">
 							<img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''" >
 							<div class="color2 py-3">{{item.title}}</div>
 						</a>
