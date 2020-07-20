@@ -45,7 +45,7 @@
 					<h1 class="color2 font-32 pb-3 position-r title">{{aboutData.title}}</h1>
 					<div class="content pt-3">
 						<div class="content ql-editor " style="clear: both;">
-							<p class="p1 " v-html="aboutData.content"></p>
+							<p class="p1 pt-3" v-html="aboutData.content"></p>
 						</div>
 					</div>
 				</div>
@@ -129,7 +129,7 @@
 						</div>
 						<div class="netBox2 color2 pt-4 d-flex flex-wrap j-sb">
 							<div class="dd my-4" v-for="(item,index) of mainData" v-if="index>0" :key="item.id">
-								<h2 class="font-24 pb-3 font-w">{{item.passage1}}</h2>
+								<h2 class="font-32 pb-3">{{item.passage1}}</h2>
 								<div class="font-18 color2 line-h1.5">
 									<div class="item">
 										<img src="images/about%20us%20-icon.png" >

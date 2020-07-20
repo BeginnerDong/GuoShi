@@ -102,43 +102,44 @@
 <style scoped="scoped">
 	.content{padding: 80px 0;position: relative;}
 	.conBox{line-height: 1.5;}
-	.conImg{width: 900px;background: url(images/border.png) no-repeat;background-size: 100% 100%;height: 1160px;margin: 0 auto;}
-	.conImg img{width: 820px;height: 1080px;position: absolute;right: 0;top: 0;left: 0;bottom: 0;margin: auto;}
+	.conImg{width: 1000px;height: 750px; background: url(images/border.png) no-repeat;background-size: 100% 100%;margin: 0 auto;}
+	.conImg img{width: 900px;height: 650px;position: absolute;right: 0;top: 0;left: 0;bottom: 0;margin: auto;}
 	.conTxt{margin: 0 auto;width: 950px;}
-	.content .btn{position: absolute;top: 50%;z-index: 10;}
+	.content .btn{position: absolute;top: 40%;z-index: 10;}
 	.pevBtn{left: 20%;}
 	.nextBtn{right: 20%;}
 	
 	
 	/* 自适应 */
 	@media only screen and (max-width: 1600px) {
-		.conImg{height: 1060px;width: 800px;}
-		.conImg img{width: 720px;height: 980px;}
+		.conImg{width: 900px;height: 680px;}
+		.conImg img{width: 820px;height: 600px;}
 		.conTxt{font-size: 20px;width: 800px;}
 		.pevBtn{left: 10%;}
 		.nextBtn{right: 10%;}
 	}
 	
 	@media only screen and (max-width: 1200px) {
-		.conImg{height: 700px;width: 500px;}
-		.conImg img{width: 450px;height: 650px;}
+		.conImg{width: 500px;height: 375px;}
+		.conImg img{width: 450px;height: 327px;}
 		.conTxt{font-size: 16px;line-height: 2;width: 680px;}
+		.content{padding: 50px 0;}
 	}
 	
 	@media only screen and (max-width: 720px) {
-		.conImg{height: 490px;width: 360px;}
-		.conImg img{width: 320px;height: 450px;}
+		.conImg{width: 360px;height: 270px;}
+		.conImg img{width: 326px;height: 240px;}
 		.conTxt{width: 100%;padding: 50px 30px 0;font-size: 14px;}
 		.pevBtn{left: 5%;}
 		.nextBtn{right: 5%;}
+		.content .btn{top: 30%;}
 	}
 	
 	@media only screen and (max-width: 500px) {
-		.content{padding: 50px 0;}
-		.conImg{height: 335px;width: 250px;}
-		.conImg img{width: 230px;height: 310px;}
+		.content{padding: 0 0 30px;}
+		.conImg{width: 250px;height: 188px;}
+		.conImg img{width: 225px;height: 166px;}
 		.conTxt{width: 100%;padding: 40px 30px 0;}
-		.content .btn{position: absolute;top: 40%;z-index: 10;}
 		.content .btn img{width: 30px;}
 	}
 </style>

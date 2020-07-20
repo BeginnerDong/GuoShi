@@ -8,6 +8,8 @@
 
 .serviceBoxR .content div p{line-height: 1.5!important;}
 
+.serItem a{cursor: pointer;}
+.serItem a:hover{color: #AD0F15;}
 
 
 @media only screen and (max-width: 1440px) {
