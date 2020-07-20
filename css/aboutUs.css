@@ -118,7 +118,7 @@ video{width: 100%;height: auto;}
 	.netBox1L .item span{font-size: 14px;}
 	.netBox1L .item img{width: 5%;margin-top: 0.5%;}
 	.netBox2 .dd{margin: 15px 0;width: 100%;}
-	.netBox2 .dd h2{padding-bottom: 20px;}
+	.netBox2 .dd h2{padding-bottom: 20px!important;font-size: 22px!important;}
 	.netBox2 .item{padding-top: 10px;}
 	.netBox2 .item img{width: 5%;margin-top: 0.5%;}
 	.netBox2 .item span{width: 90%;font-size: 12px;}
