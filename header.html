@@ -8,8 +8,8 @@
 					<li><a href="news.html">{{language=='CN'?'新闻中心':'News Center'}}</a></li>
 					<li><a href="aboutUs.html?index=1">{{language=='CN'?'联系我们':'Contact US'}}</a></li>
 					<li @click="changeLanguage"><a>
-					<span :style="language=='CN'?'color:red':''">中文</span>/
-					<span :style="language=='EN'?'color:red':''">英文</span></a></li>
+					<span :style="language=='CN'?'color:red':''" class="hand">中文</span>/
+					<span :style="language=='EN'?'color:red':''" class="hand">英文</span></a></li>
 				</ul>
 				<ul class="navBig color2 flex-1" :class="language=='EN'?'font-20':'font-24'">
 					<li class="navBigLi h-100" v-for="(v,i) in labelData" :key="i" @click="changeCurr(i)" @mouseenter="enter(i)" @mouseleave="leave()">
@@ -27,6 +27,10 @@
 	
 	<!-- 移动端header -->
 	<div class="mHead">
+		<div class="CNEN">
+			<span :style="language=='CN'?'color:red':''" class="hand">中文</span>/
+			<span :style="language=='EN'?'color:red':''" class="hand">英文</span>
+		</div>
 		<!-- mobile的按钮 -->
 		<div class="mobile-Btn" @click="shownav()">
 			<span></span>
@@ -364,6 +368,7 @@
 	.mHead{height: 50px;background-color: #333333;position: fixed;top: 0;left: 0;right: 0; display: none;z-index: 9999;}
 	.mobile-Btn{width: 32px;height: 32px;background: #BB1B21;border-radius: 5px;padding: 5px;box-sizing: border-box;margin:8px 0 ;position: absolute;top: 0;right: 8px;}
 	.mobile-Btn span{width: 100%;height: 1px;background: #fff;margin: 5px auto;display: block;}
+	.CNEN{font-size: 50rpx!important;color: #fff;}
 	
 	.headMask{width: 100%;height: 100%;position: fixed;background-color: rgba(0,0,0,.5);z-index: 999;}
 	.navM .navMLi a{width: 200px;padding: 15px 0;text-align: center;border-bottom: 1px solid #e1e1e1;}
